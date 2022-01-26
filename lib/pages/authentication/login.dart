@@ -7,24 +7,25 @@ class loginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //background colour
       backgroundColor: Color.fromRGBO(21, 34, 56, 1),
       body: Container(
-          padding: EdgeInsets.all(35),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          padding: EdgeInsets.all(40),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center,
+              //contains all container
+              children: [
             Container(
-                color: Colors.grey,
                 child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text("hello",
-                      style: TextStyle(color: Colors.white, fontSize: 20)),
+                    Row(mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                  Text("Mind Series",
+                      style: TextStyle(color: Colors.white, fontSize: 36)),
                   Container(
                     width: 10,
                   ),
-                  Text("world",
-                      style: TextStyle(color: Colors.white, fontSize: 20))
                 ])),
             Container(
-              height: 30,
+              height: 60,
             ),
             Container(
               child: Column(
@@ -40,15 +41,22 @@ class loginPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 20,
                   ),
+                  //email/username container
                   Container(
-                    height: 60,
+                    height: 30,
                     color: Colors.orange,
+                    child: Row(
+                      children: [
+                        Text('Email/Username')
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 15,
                   ),
+                  //password container
                   Container(
                     height: 60,
                     color: Colors.red,
@@ -56,6 +64,7 @@ class loginPage extends StatelessWidget {
                   SizedBox(
                     height: 15,
                   ),
+                  //remember password and forgot password container
                   Container(
                     height: 40,
                     color: Colors.pink,
@@ -70,6 +79,7 @@ class loginPage extends StatelessWidget {
                   SizedBox(
                     height: 15,
                   ),
+                  //sign in container
                   Container(
                     height: 30,
                     color: Colors.white,
@@ -84,6 +94,7 @@ class loginPage extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
+                  //sign up container
                   Container(
                     height: 20,
                     width: MediaQuery.of(context).size.width,
