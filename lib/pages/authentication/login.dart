@@ -14,12 +14,16 @@ class loginPage extends StatelessWidget {
           child: Column(mainAxisAlignment: MainAxisAlignment.center,
               //contains all container
               children: [
+                //Mind Series title
             Container(
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                   Text("Mind Series",
-                      style: TextStyle(color: Colors.white, fontSize: 36)),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 36,
+                          fontFamily: 'PoiretOne', )),
                   Container(
                     width: 10,
                   ),
@@ -45,7 +49,7 @@ class loginPage extends StatelessWidget {
                   ),
                   //email/username container
                   Container(
-                    height: 30,
+                    height: 50,
                     color: Colors.orange,
                     child: Row(
                       children: [
@@ -56,22 +60,31 @@ class loginPage extends StatelessWidget {
                   SizedBox(
                     height: 15,
                   ),
+
+
                   //password container
                   Container(
-                    height: 60,
+                    height: 50,
                     color: Colors.red,
+                    child: Row(
+                      children: [
+                      Text('Password')
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 15,
                   ),
+
+
                   //remember password and forgot password container
                   Container(
-                    height: 40,
+                    height: 25,
                     color: Colors.pink,
                     child: Row(
                       children: [
                         Text('Remember me'),
-                        Text('Forgot Password?'),
+                      Text('Forgot Password?'),
                       ],
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     ),
@@ -79,6 +92,8 @@ class loginPage extends StatelessWidget {
                   SizedBox(
                     height: 15,
                   ),
+
+
                   //sign in container
                   Container(
                     height: 30,
