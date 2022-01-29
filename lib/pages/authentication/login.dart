@@ -11,42 +11,53 @@ class loginPage extends StatelessWidget {
       backgroundColor: Color.fromRGBO(21, 34, 56, 1),
       body: Container(
           padding: EdgeInsets.all(40),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center,
-              //contains all container
+          //moves main column to centre
+          child: Column(mainAxisAlignment: MainAxisAlignment.center ,
+              //contains all sub-containers
               children: [
                 //Mind Series title
             Container(
                 child:
+                    //aligns mindseries text to the centre
                     Row(mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                  Text("Mind Series",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 36,
-                          fontFamily: 'PoiretOne', )),
-                  Container(
-                    width: 10,
+                          Text("Mind Series",
+                              style: TextStyle(
+                                letterSpacing: 2,
+                                color: Colors.white,
+                                fontSize: 36,
+                              fontFamily: 'PoiretOne',)),
+                          Container(
+                            width: 20,
                   ),
-                ])),
-            Container(
-              height: 60,
+                ])
             ),
+            //space between mind series text and welcome back text
             Container(
-              child: Column(
+              height: 130,
+            ),
+
+            //welcome back text
+            Container(
+              child:
+              Column(
                 children: [
                   Container(
                     child: Text(
-                      'Welcome Back!',
+                      'Welcome back!',
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 24,
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                     width: MediaQuery.of(context).size.width,
                   ),
+
+                  //space between welcome back text and email/username text
                   SizedBox(
                     height: 20,
                   ),
+
                   //email/username container
                   Container(
                     height: 50,
@@ -58,7 +69,7 @@ class loginPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
 
 
@@ -73,7 +84,7 @@ class loginPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
 
 
@@ -101,7 +112,7 @@ class loginPage extends StatelessWidget {
                     child: Row(
                       children: [
                         Text('Sign In'),
-                        IconButton(onPressed: null, icon: Icon(Icons.login)),
+                      IconButton(onPressed: null, icon: Icon(Icons.login)),
                       ],
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     ),

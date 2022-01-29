@@ -80,9 +80,10 @@ flutter:
     #     - asset: fonts/Schyler-Italic.ttf
     #       style: italic
 
+fonts:
+  - family: PoiretOne
     fonts:
-      - family: PoiretOne
-        fonts:
-          - asset: fonts/Poiret_One/PoiretOne-Regular.ttf
-            style: regular
+      - asset: fonts/PoiretOne-Regular.ttf
+        style: regular
+
 
