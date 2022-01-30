@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class signUpFormPage extends StatelessWidget {
+class SignUpFormPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

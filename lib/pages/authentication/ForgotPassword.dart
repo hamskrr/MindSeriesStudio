@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class forgotpasswordPage extends StatelessWidget {  @override
+class ForgotPasswordPage extends StatelessWidget {  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(21, 34, 56, 1),

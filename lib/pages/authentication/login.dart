@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class loginPage extends StatelessWidget {
-  const loginPage({Key? key}) : super(key: key);
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,8 @@ class loginPage extends StatelessWidget {
                                 letterSpacing: 2,
                                 color: Colors.white,
                                 fontSize: 36,
-                              fontFamily: 'PoiretOne',)),
+                              fontFamily: 'PoiretOne',)
+                          ),
                           Container(
                             width: 20,
                   ),
@@ -125,7 +126,14 @@ class loginPage extends StatelessWidget {
                     height: 20,
                     width: MediaQuery.of(context).size.width,
                     color: Colors.deepPurpleAccent,
-                    child: Text('Sign Up'),
+                    child: Text(
+                        'Sign Up',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      letterSpacing: 2,
+                      //fontFamily: 'PoiretOne',
+                    ),
+                    ),
                   ),
                 ],
               ),

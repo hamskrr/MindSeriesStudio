@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class accountPage extends StatelessWidget {  @override
+class AccountPage extends StatelessWidget {  @override
   Widget build(BuildContext context) {
   return Scaffold(
     backgroundColor: Color.fromRGBO(21, 34, 56, 1),
