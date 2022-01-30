@@ -12,133 +12,202 @@ class LoginPage extends StatelessWidget {
       body: Container(
           padding: EdgeInsets.all(40),
           //moves main column to centre
-          child: Column(mainAxisAlignment: MainAxisAlignment.center ,
+          child: Column(mainAxisAlignment: MainAxisAlignment.center,
               //contains all sub-containers
               children: [
                 //Mind Series title
-            Container(
-                child:
-                    //aligns mindseries text to the centre
-                    Row(mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Mind Series",
+                Transform.translate(
+                  //adds transformation to widget relative to device
+                  offset: Offset(0, -145), //x and y fields moves text
+                  child: Container(
+                     // color: Colors.green,
+                      child:
+                          //aligns mindseries text to the centre
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                            Text("Mind Series",
+                                style: TextStyle(
+                                 // letterSpacing: 2,
+                                  color: Colors.white,
+                                  fontSize: 36,
+                                  fontFamily: 'PoiretOne',
+                                )
+                            ),
+                          ])),
+                ),
+
+                //welcome back text
+                Container(
+                  child: Column(
+                    children: [
+                      Container(
+                        child: Text(
+                          'Welcome back!',
+                          style: TextStyle(
+                              fontSize: 24,
+                              letterSpacing: 2.0,
+                              color: Colors.white),
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                      ),
+
+                      //space between welcome back text and email/username text
+                      SizedBox(
+                        height: 30,
+                      ),
+
+                      //email/username text
+                      Container(
+                        child: Text(
+                          'Email/Username',
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                      ),
+
+                      SizedBox(
+                        height: 10,
+                      ),
+
+                      //email/username container
+                      Container(
+                          height: 40,
+                          // color: Colors.white,
+                          //textfield lets you edit
+                          child: TextField(
+                            decoration: InputDecoration(
+                                hintText: 'example@hotmail.com',
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0))),
+                          )),
+
+                      SizedBox(
+                        height: 20,
+                      ),
+
+                      //password text
+                      Container(
+                        child: Text(
+                          'Password',
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                      ),
+
+                      SizedBox(
+                        height: 10,
+                      ),
+
+                      //password container
+                      Container(
+                          height: 40,
+                          child: TextField(
+                            decoration: InputDecoration(
+                                hintText: 'Min. 8 characters',
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0))),
+                          )),
+
+                      SizedBox(
+                        height: 20,
+                      ),
+
+                      //remember password and forgot password text
+                      Container(
+                        height: 25,
+                        child: Row(
+                          children: [
+                            Text(
+                              'Remember me',
                               style: TextStyle(
-                                letterSpacing: 2,
+                                fontSize: 12,
                                 color: Colors.white,
-                                fontSize: 36,
-                              fontFamily: 'PoiretOne',)
-                          ),
-                          Container(
-                            width: 20,
-                  ),
-                ])
-            ),
-            //space between mind series text and welcome back text
-            Container(
-              height: 130,
-            ),
+                                fontWeight: FontWeight.bold
+                              )
+                            ),
+                            Text(
+                                'Forgot Password?',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold
+                                )
+                            ),
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        ),
+                      ),
 
-            //welcome back text
-            Container(
-              child:
-              Column(
-                children: [
-                  Container(
-                    child: Text(
-                      'Welcome back!',
-                      style: TextStyle(
-                          fontSize: 24,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    width: MediaQuery.of(context).size.width,
-                  ),
+                      SizedBox(
+                        height: 15,
+                      ),
 
-                  //space between welcome back text and email/username text
-                  SizedBox(
-                    height: 20,
-                  ),
+                      //login container
+                      Container(
+                        height: 30,
+                        color: Colors.orange,
+                        child: Row(
+                          children: [
+                            Text(
+                                'Login',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                )
+                            ),
 
-                  //email/username container
-                  Container(
-                    height: 50,
-                    color: Colors.orange,
-                    child: Row(
-                      children: [
-                        Text('Email/Username')
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
+                            // IconButton(
+                            //     onPressed: null, icon: Icon(Icons.login, color: Colors.white)),
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        ),
+                      ),
 
+                      SizedBox(
+                        height: 30,
+                      ),
 
-                  //password container
-                  Container(
-                    height: 50,
-                    color: Colors.red,
-                    child: Row(
-                      children: [
-                      Text('Password')
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
+                      //Not registered yet? container
+                      Container(
+                        height: 25,
+                        child: Row(
+                          children: [
+                            Text(
+                                'Not registered yet?',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                )
+                            ),
+                            Text(
+                                'Create an Account',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.orange,
+                                  fontWeight: FontWeight.bold
+                                )
+                            ),
+                          ],
+                         // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        ),
+                      ),
 
-
-                  //remember password and forgot password container
-                  Container(
-                    height: 25,
-                    color: Colors.pink,
-                    child: Row(
-                      children: [
-                        Text('Remember me'),
-                      Text('Forgot Password?'),
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    ),
+                    ],
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-
-
-                  //sign in container
-                  Container(
-                    height: 30,
-                    color: Colors.white,
-                    child: Row(
-                      children: [
-                        Text('Sign In'),
-                      IconButton(onPressed: null, icon: Icon(Icons.login)),
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  //sign up container
-                  Container(
-                    height: 20,
-                    width: MediaQuery.of(context).size.width,
-                    color: Colors.deepPurpleAccent,
-                    child: Text(
-                        'Sign Up',
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      letterSpacing: 2,
-                      //fontFamily: 'PoiretOne',
-                    ),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ])),
+                )
+              ])),
     );
   }
 }
