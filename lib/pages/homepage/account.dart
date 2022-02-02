@@ -14,9 +14,19 @@ class AccountPage extends StatelessWidget {  @override
           //account title
           Container(
               height: 35,
-              color: Colors.white,
+            //  color: Colors.white,
               child: Row(
-                children: [Text('Account')],
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                      'Account',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Cabin',
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  )],
               )
           ),
 
@@ -27,9 +37,17 @@ class AccountPage extends StatelessWidget {  @override
           //change/remove
           Container(
               height: 20,
-              color: Colors.white,
+             // color: Colors.white,
               child: Row(
-                children: [Text('change/remove')],
+                children: [
+                  Text(
+                      'change/remove',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700, //bold
+                    fontSize: 20,
+                    fontFamily: 'Cabin',
+                    color: Colors.white,
+                  ),)],
               )
           ),
 
@@ -40,74 +58,246 @@ class AccountPage extends StatelessWidget {  @override
           //username
           Container(
               height: 20,
-              color: Colors.white,
+             // color: Colors.white,
               child: Row(
-                children: [Text('Username')],
+                children: [
+                  Text(
+                      'Username',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400, //regular
+                    fontFamily: 'Cabin',
+                    color: Colors.white,
+                  ),)],
+              )
+          ),
+
+
+          SizedBox(
+            height: 10,
+          ),
+
+          //username textbox
+          Container(
+              height: 30,
+              // color: Colors.white,
+              //textfield lets you edit
+              child: TextField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                   // hintText: '',
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    )
+                ),
               )
           ),
 
           SizedBox(
-            height: 15,
+            height: 20,
           ),
 
           //first name
           Container(
               height: 20,
-              color: Colors.white,
+           //   color: Colors.white,
               child: Row(
-                children: [Text('First name')],
+                children: [
+                  Text(
+                      'First name',
+                  style: TextStyle(
+                    fontFamily: 'Cabin',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
+                  )],
               )
           ),
 
           SizedBox(
-            height: 15,
+            height: 10,
+          ),
+
+          //first name text box
+          Container(
+              height: 30,
+              // color: Colors.white,
+              //textfield lets you edit
+              child: TextField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  // hintText: '',
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    )
+                ),
+              )
+          ),
+
+
+          SizedBox(
+            height: 20,
           ),
 
           //lastname
           Container(
               height: 20,
-              color: Colors.white,
+          //    color: Colors.white,
               child: Row(
-                children: [Text('Last name')],
+                children: [
+                  Text(
+                      'Last name',
+                    style: TextStyle(
+                      fontFamily: 'Cabin',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  )],
               )
           ),
 
           SizedBox(
-            height: 15,
+            height: 10,
+          ),
+
+          //lastname text box
+          Container(
+              height: 30,
+              // color: Colors.white,
+              //textfield lets you edit
+              child: TextField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  // hintText: '',
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    )
+                ),
+              )
+          ),
+
+
+          SizedBox(
+            height: 20,
           ),
 
           //email address
           Container(
               height: 20,
-              color: Colors.white,
+             // color: Colors.white,
               child: Row(
-                children: [Text('Email address')],
+                children: [
+                  Text(
+                      'Email address',
+                    style: TextStyle(
+                      fontFamily: 'Cabin',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  )],
               )
           ),
 
+
           SizedBox(
-            height: 15,
+            height: 10,
+          ),
+
+          //email address text box
+          Container(
+              height: 30,
+              // color: Colors.white,
+              //textfield lets you edit
+              child: TextField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  // hintText: '',
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    )
+                ),
+              )
+          ),
+
+
+          SizedBox(
+            height: 20,
           ),
 
           //phone number
           Container(
               height: 20,
-              color: Colors.white,
+          //    color: Colors.white,
               child: Row(
-                children: [Text('Phone number')],
+                children: [
+                  Text(
+                      'Phone number',
+                    style: TextStyle(
+                      fontFamily: 'Cabin',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  )],
               )
           ),
 
+
           SizedBox(
-            height: 15,
+            height: 10,
+          ),
+
+          //phone number text box
+          Container(
+              height: 30,
+              // color: Colors.white,
+              //textfield lets you edit
+              child: TextField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  // hintText: '',
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    )
+                ),
+              )
+          ),
+
+
+          SizedBox(
+            height: 20,
           ),
 
           //save button
           Container(
-              height: 20,
+              height: 30,
               color: Colors.lightBlue,
               child: Row(
-                children: [Text('Save')],
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                      'Save',
+                    style: TextStyle(
+                      fontFamily: 'Cabin',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18,
+                      color: Colors.white,
+                      letterSpacing: 2
+                    ),
+                  )],
               )
           ),
 

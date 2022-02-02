@@ -14,9 +14,18 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
           //Hi Username
           Container(
               height: 50,
-              color: Colors.white,
+             // color: Colors.white,
               child: Row(
-                children: [Text('Hi Hamda!')],
+                children: [
+                  Text(
+                      'Hi Hamda!',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Cabin'
+                  ),
+                  )],
               )
           ),
 
@@ -27,9 +36,18 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
           //text
           Container(
               height: 20,
-              color: Colors.white,
+          //    color: Colors.white,
               child: Row(
-                children: [Text('Taking note of ...')],
+                children: [
+                  Text(
+                      'Taking note of ...',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400, //regular
+                        fontFamily: 'Cabin',
+                      letterSpacing: 1
+                    ),)],
               )
           ),
 
@@ -40,9 +58,18 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
           //How are you feeling
           Container(
               height: 30,
-              color: Colors.white,
+         //     color: Colors.white,
               child: Row(
-                children: [Text('How are you feeling today?')],
+                children: [
+                  Text(
+                      'How are you feeling today?',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Cabin'
+                    ),
+                  )],
               )
           ),
 
@@ -55,25 +82,42 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
           //Moments text
           Container(
               height: 30,
-              color: Colors.white,
+          //    color: Colors.white,
               child: Row(
-                children: [Text('Moments')],
+                children: [
+                  Text(
+                      'Moments',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'Cabin'
+                    ),
+                  )],
               )
           ),
 
           SizedBox(
-            height: 15,
+            height: 10,
           ),
 
           //Moments textbox
           Container(
-              height: 30,
-              color: Colors.white,
-              child: Row(
-                children: [Text('add note...')],
+              height: 60,
+              // color: Colors.white,
+              //textfield lets you edit
+              child: TextField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                   hintText: 'add note...',
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    )
+                ),
               )
           ),
-
           SizedBox(
             height: 30,
           ),
@@ -81,22 +125,40 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
           //Mindful Mood
           Container(
               height: 30,
-              color: Colors.white,
+          //    color: Colors.white,
               child: Row(
-                children: [Text('Mindful Mood')],
+                children: [
+                  Text(
+                      'Mindful Mood',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'Cabin'
+                    ),
+                  )],
               )
           ),
 
           SizedBox(
-            height: 15,
+            height: 10,
           ),
 
           //what actions ...
           Container(
               height: 20,
-              color: Colors.white,
+           //   color: Colors.white,
               child: Row(
-                children: [Text('What action are you..')],
+                children: [
+                  Text(
+                      'What action are you..',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'Cabin'
+                    ),
+                  )],
               )
           ),
 
@@ -106,7 +168,7 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
 
           //mindful mood images
           Container(
-              height: 30,
+              height: 60,
               color: Colors.white,
               ),
 
@@ -117,9 +179,29 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
           //close button
           Container(
             height: 30,
-            color: Colors.white,
+          //  color: Colors.white,
             child: Row (
-              children: [Text('button')],
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                    'Close',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Cabin'
+                  ),
+                ),
+                Text(
+                  'Save',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: 'Cabin'
+                ),
+                )
+              ],
             ),
           ),
 

@@ -90,6 +90,10 @@ fonts:
     fonts:
       - asset: assets/fonts/PoiretOne-Regular.ttf
 
+  - family: Cabin
+    fonts:
+      - asset: assets/fonts/Cabin-VariableFont_wdth,wght.ttf
+
 
 
 

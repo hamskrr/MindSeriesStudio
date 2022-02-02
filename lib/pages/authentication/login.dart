@@ -18,7 +18,7 @@ class LoginPage extends StatelessWidget {
                 //Mind Series title
                 Transform.translate(
                   //adds transformation to widget relative to device
-                  offset: Offset(0, -145), //x and y fields moves text
+                  offset: Offset(0, -105), //x and y fields moves text
                   child: Container(
                      // color: Colors.green,
                       child:
@@ -31,6 +31,7 @@ class LoginPage extends StatelessWidget {
                                  // letterSpacing: 2,
                                   color: Colors.white,
                                   fontSize: 36,
+                                  fontWeight: FontWeight.w600,
                                   fontFamily: 'PoiretOne',
                                 )
                             ),
@@ -46,7 +47,9 @@ class LoginPage extends StatelessWidget {
                           'Welcome back!',
                           style: TextStyle(
                               fontSize: 24,
-                              letterSpacing: 2.0,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1,
+                              fontFamily: 'Cabin',
                               color: Colors.white),
                         ),
                         width: MediaQuery.of(context).size.width,
@@ -54,7 +57,7 @@ class LoginPage extends StatelessWidget {
 
                       //space between welcome back text and email/username text
                       SizedBox(
-                        height: 30,
+                        height: 60,
                       ),
 
                       //email/username text
@@ -64,6 +67,7 @@ class LoginPage extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.white,
+                              fontFamily: 'Cabin',
                               fontWeight: FontWeight.bold),
                         ),
                         width: MediaQuery.of(context).size.width,
@@ -79,13 +83,17 @@ class LoginPage extends StatelessWidget {
                           // color: Colors.white,
                           //textfield lets you edit
                           child: TextField(
+                            keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                                 hintText: 'example@hotmail.com',
                                 fillColor: Colors.white,
                                 filled: true,
                                 border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0))),
-                          )),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                )
+                            ),
+                          )
+                      ),
 
                       SizedBox(
                         height: 20,
@@ -111,10 +119,12 @@ class LoginPage extends StatelessWidget {
                       Container(
                           height: 40,
                           child: TextField(
+                            textAlign: TextAlign.left,
                             decoration: InputDecoration(
                                 hintText: 'Min. 8 characters',
                                 fillColor: Colors.white,
                                 filled: true,
+                                //font style cabin
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10.0))),
                           )),
@@ -131,7 +141,7 @@ class LoginPage extends StatelessWidget {
                             Text(
                               'Remember me',
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 13,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold
                               )
@@ -139,9 +149,10 @@ class LoginPage extends StatelessWidget {
                             Text(
                                 'Forgot Password?',
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 13,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold
+                                    //add font style cabin
                                 )
                             ),
                           ],
@@ -158,6 +169,7 @@ class LoginPage extends StatelessWidget {
                         height: 30,
                         color: Colors.orange,
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                                 'Login',
@@ -171,7 +183,6 @@ class LoginPage extends StatelessWidget {
                             // IconButton(
                             //     onPressed: null, icon: Icon(Icons.login, color: Colors.white)),
                           ],
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         ),
                       ),
 
@@ -188,6 +199,7 @@ class LoginPage extends StatelessWidget {
                                 'Not registered yet?',
                                 style: TextStyle(
                                   fontSize: 14,
+                                  fontFamily: 'Cabin',
                                   color: Colors.white,
                                 )
                             ),
@@ -195,12 +207,13 @@ class LoginPage extends StatelessWidget {
                                 'Create an Account',
                                 style: TextStyle(
                                   fontSize: 14,
+                                  fontFamily: 'Cabin',
                                   color: Colors.orange,
                                   fontWeight: FontWeight.bold
                                 )
                             ),
                           ],
-                         // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         ),
                       ),
 

@@ -14,10 +14,20 @@ class SettingsPage extends StatelessWidget {
 
             //settings title
             Container(
-                height: 30,
-                color: Colors.white,
+                height: 50,
+             //   color: Colors.white,
                 child: Row(
-                  children: [Text('Settings')],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                        'Settings',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 32,
+                      fontFamily: 'Roboto',
+                      color: Colors.white,
+                    ),
+                    )],
                 )
             ),
 
@@ -28,9 +38,19 @@ class SettingsPage extends StatelessWidget {
             //dark mmode
             Container(
                 height: 20,
-                color: Colors.white,
+               // color: Colors.white,
                 child: Row(
-                  children: [Text('Dark mode')],
+                  children: [
+                    Text(
+                        'Dark mode',
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white,
+                    ),
+                    )
+                  ],
                 )
             ),
 
@@ -41,9 +61,18 @@ class SettingsPage extends StatelessWidget {
             //apperance
             Container(
                 height: 20,
-                color: Colors.white,
+              //  color: Colors.white,
                 child: Row(
-                  children: [Text('Apperance')],
+                  children: [
+                    Text(
+                        'Apperance',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    )],
                 )
             ),
 
@@ -54,9 +83,18 @@ class SettingsPage extends StatelessWidget {
             //notifications
             Container(
                 height: 20,
-                color: Colors.white,
+               // color: Colors.white,
                 child: Row(
-                  children: [Text('Notifications')],
+                  children: [
+                    Text(
+                        'Notifications',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    )],
                 )
             ),
 
@@ -67,9 +105,18 @@ class SettingsPage extends StatelessWidget {
             //privacy and security
             Container(
                 height: 20,
-                color: Colors.white,
+             //   color: Colors.white,
                 child: Row(
-                  children: [Text('Privacy and Security')],
+                  children: [
+                    Text(
+                        'Privacy and Security',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    )],
                 )
             ),
 
@@ -80,9 +127,18 @@ class SettingsPage extends StatelessWidget {
             //language
             Container(
                 height: 20,
-                color: Colors.white,
+               // color: Colors.white,
                 child: Row(
-                  children: [Text('Language')],
+                  children: [
+                    Text(
+                        'Language',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    )],
                 )
             ),
 
@@ -93,9 +149,18 @@ class SettingsPage extends StatelessWidget {
             //share the app
             Container(
                 height: 20,
-                color: Colors.white,
+                //color: Colors.white,
                 child: Row(
-                  children: [Text('Share the app')],
+                  children: [
+                    Text(
+                        'Share the app',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    )],
                 )
             ),
 
@@ -106,9 +171,17 @@ class SettingsPage extends StatelessWidget {
             //rate us
             Container(
                 height: 20,
-                color: Colors.white,
+                //color: Colors.white,
                 child: Row(
-                  children: [Text('Rate Us')],
+                  children: [
+                    Text('Rate Us',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    )],
                 )
             ),
 

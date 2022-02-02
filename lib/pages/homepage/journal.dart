@@ -14,10 +14,20 @@ class JournalPage extends StatelessWidget {
 
             //journal title
             Container(
-                height: 20,
-                color: Colors.white,
+                height: 30,
+              //  color: Colors.white,
                 child: Row(
-                  children: [Text('Journal')],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                        'Journal',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 22,
+                      fontFamily: 'Cabin',
+                    ),
+                    )],
                 )),
 
             SizedBox(
@@ -27,9 +37,28 @@ class JournalPage extends StatelessWidget {
             //date
             Container(
                 height: 20,
-                color: Colors.white,
+               // color: Colors.white,
                 child: Row(
-                  children: [Text('date')],
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Username',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontFamily: 'Cabin'
+                      ),
+
+                    ),
+                    Text(
+                        'date',
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 13,
+                      color: Colors.white,
+                    ),)],
                 )),
 
             SizedBox(
@@ -39,9 +68,18 @@ class JournalPage extends StatelessWidget {
             //name 3 things - gratitude
             Container(
               height: 20,
-              color: Colors.white,
+            //  color: Colors.white,
               child: Row(
-                children: [Text('Name 3 things you are grateful for')],
+                children: [
+                  Text(
+                      'Name 3 things you are grateful for',
+                  style: TextStyle(
+                    fontFamily: 'Roboto',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                  ),
+                  )],
               ),
             ),
 
@@ -51,35 +89,54 @@ class JournalPage extends StatelessWidget {
 
             //gratitude textbox
             Container(
-                height: 20,
-                color: Colors.white,
-                child: Row(
-                  children: [Text('type text ...')],
+                height: 30,
+                child: TextField(
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                      hintText: 'type text...',
+                      fillColor: Colors.white,
+                      filled: true,
+                      //font style cabin
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0))),
                 )),
 
             SizedBox(
-              height: 5,
+              height: 10,
             ),
 
             //gratitude textbox
             Container(
-                height: 20,
-                color: Colors.white,
-                child: Row(
-                  children: [Text('type text ...')],
+                height: 30,
+                child: TextField(
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                      hintText: 'type text...',
+                      fillColor: Colors.white,
+                      filled: true,
+                      //font style cabin
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0))),
                 )),
 
             SizedBox(
-              height: 5,
+              height: 10,
             ),
 
             //gratitude textbox
             Container(
-                height: 20,
-                color: Colors.white,
-                child: Row(
-                  children: [Text('type text ...')],
+                height: 30,
+                child: TextField(
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                      hintText: 'type text...',
+                      fillColor: Colors.white,
+                      filled: true,
+                      //font style cabin
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0))),
                 )),
+
 
             SizedBox(
               height: 15,
@@ -88,9 +145,18 @@ class JournalPage extends StatelessWidget {
             //name 3 things - affirmations
             Container(
               height: 20,
-              color: Colors.white,
+             // color: Colors.white,
               child: Row(
-                children: [Text('Write down 3 affirmations')],
+                children: [
+                  Text(
+                      'Write down 3 affirmations',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    fontFamily: 'Roboto',
+                    color: Colors.white,
+                  ),
+                  )],
               ),
             ),
 
@@ -100,37 +166,56 @@ class JournalPage extends StatelessWidget {
 
             //affirmations textbox
             Container(
-                height: 20,
-                color: Colors.white,
-                child: Row(
-                  children: [Text('type text ...')],
+                height: 30,
+                child: TextField(
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                      hintText: 'type text...',
+                      fillColor: Colors.white,
+                      filled: true,
+                      //font style cabin
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0))),
                 )),
 
+
             SizedBox(
-              height: 5,
+              height: 10,
             ),
 
             //affirmations textbox
             Container(
-                height: 20,
-                color: Colors.white,
-                child: Row(
-                  children: [Text('type text ...')],
-                )
-            ),
+                height: 30,
+                child: TextField(
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                      hintText: 'type text...',
+                      fillColor: Colors.white,
+                      filled: true,
+                      //font style cabin
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0))),
+                )),
+
 
             SizedBox(
-              height: 5,
+              height: 10,
             ),
 
             //affirmations textbox
             Container(
-                height: 20,
-                color: Colors.white,
-                child: Row(
-                  children: [Text('type text ...')],
-                )
-            ),
+                height: 30,
+                child: TextField(
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                      hintText: 'type text...',
+                      fillColor: Colors.white,
+                      filled: true,
+                      //font style cabin
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0))),
+                )),
+
 
             SizedBox(
               height: 35,
@@ -138,24 +223,35 @@ class JournalPage extends StatelessWidget {
 
             //title
             Container(
-              height: 20,
-              color: Colors.white,
-              child: Row(
-                children: [Text('title')],
-              ),
-            ),
-
+                height: 30,
+                child: TextField(
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                      hintText: 'Title',
+                      fillColor: Colors.white,
+                      filled: true,
+                      //font style cabin
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0))),
+                )),
             SizedBox(
               height: 15,
             ),
 
             //textbox
             Container(
-                height: 80,
-                color: Colors.white,
-                child: Row(
-                  children: [Text('type text ...')],
+                height: 100,
+                child: TextField(
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                      hintText: 'type text...',
+                      fillColor: Colors.white,
+                      filled: true,
+                      //font style cabin
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0))),
                 )),
+
           ],
         ),
       ),
