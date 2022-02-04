@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/fontelico_icons.dart';
 
 class MoodTrackerGreetingPage extends StatelessWidget {  @override
   Widget build(BuildContext context) {
@@ -10,6 +11,23 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+
+          Container(
+            // color: Colors.green,
+              child:
+              //aligns mindseries text to the centre
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Mind Series",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'PoiretOne',
+                        )
+                    ),
+                  ])),
 
           //Hi Username
           Container(
@@ -78,6 +96,41 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
           ),
 
           //emoji moods
+          Container(
+             child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: const <Widget>[
+                  Icon(
+                    Icons.face,
+                    color: Colors.red,
+                    size: 30.0,
+                    semanticLabel: 'Text to announce in accessibility modes',
+                  ),
+                  Icon(
+                    Icons.audiotrack,
+                    color: Colors.amber,
+                    size: 30.0,
+                  ),
+                  Icon(
+                    Icons.audiotrack,
+                    color: Colors.grey,
+                    size: 30.0,
+                  ),
+                  Icon(
+                    Icons.audiotrack,
+                    color: Colors.green,
+                    size: 30.0,
+                  ),
+                  Icon(
+                    Icons.audiotrack,
+                    color: Colors.purpleAccent,
+                    size: 30.0,
+                  ),
+                ],
+              )
+          ),
+
+
 
           //Moments text
           Container(
@@ -86,7 +139,7 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
               child: Row(
                 children: [
                   Text(
-                      'Moments',
+                        'Note',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,

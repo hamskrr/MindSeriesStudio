@@ -10,6 +10,28 @@ class AccountPage extends StatelessWidget {  @override
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+      Transform.translate(
+      //adds transformation to widget relative to device
+      offset: Offset(0, -60), //x and y fields moves text
+          child:
+          Container(
+            // color: Colors.green,
+              child:
+              //aligns mindseries text to the centre
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Mind Series",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'PoiretOne',
+                        )
+                    ),
+                  ])
+          ),
+      ),
 
           //account title
           Container(
@@ -24,24 +46,24 @@ class AccountPage extends StatelessWidget {  @override
                     color: Colors.white,
                     fontFamily: 'Cabin',
                     fontSize: 22,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w700,
                   ),
                   )],
               )
           ),
 
           SizedBox(
-            height: 30,
+            height: 60,
           ),
 
           //change/remove
           Container(
-              height: 20,
+              height: 30,
              // color: Colors.white,
               child: Row(
                 children: [
                   Text(
-                      'change/remove',
+                      'Change/Remove',
                   style: TextStyle(
                     fontWeight: FontWeight.w700, //bold
                     fontSize: 20,

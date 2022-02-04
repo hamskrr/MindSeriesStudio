@@ -12,7 +12,8 @@ class ForgotPasswordPage extends StatelessWidget {  @override
             Transform.translate(
             //adds transformation to widget relative to device
             offset: Offset(0, -250), //x and y fields moves text
-              child: Container(
+              child:
+              Container(
                 // color: Colors.green,
                   child:
                   //aligns mindseries text to the centre
@@ -28,10 +29,6 @@ class ForgotPasswordPage extends StatelessWidget {  @override
                             )
                         ),
                       ])),
-            ),
-
-            SizedBox(
-              height: 5,
             ),
 
             //reset password text

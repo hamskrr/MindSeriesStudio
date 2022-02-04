@@ -94,6 +94,10 @@ fonts:
     fonts:
       - asset: assets/fonts/Cabin-VariableFont_wdth,wght.ttf
 
+  - family:  MyFlutterApp
+    fonts:
+      - asset: fonts/MyFlutterApp.ttf
+
 
 
 

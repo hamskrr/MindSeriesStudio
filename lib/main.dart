@@ -12,8 +12,9 @@ import 'package:mindseries/pages/homepage/moodtrackerentries.dart';
 import 'package:mindseries/pages/homepage/moodtrackergreeting.dart';
 import 'package:mindseries/pages/homepage/settings.dart';
 
+
 void main() => runApp(MaterialApp(
-  home: MoodTrackerGreetingPage(),
+  home: AccountPage(),
     // backgroundColor: Color.fromRGBO(21, 34, 56, 1),
 ));
 

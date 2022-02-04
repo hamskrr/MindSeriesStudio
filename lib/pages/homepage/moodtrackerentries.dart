@@ -10,24 +10,92 @@ class MoodTrackerEntriesPage extends StatelessWidget {  @override
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+
+      Transform.translate(
+      //adds transformation to widget relative to device
+      offset: Offset(0, -60), //x and y fields moves text
+      child:
+      Container(
+        // color: Colors.green,
+          child:
+          //aligns mindseries text to the centre
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Mind Series",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'PoiretOne',
+                    )
+                ),
+              ])
+      ),
+      ),
+
           Container(
               height: 35,
-              color: Colors.white,
+            //  color: Colors.white,
               child: Row(
-                children: [Text('Mood Tracker')],
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                      'Mood Tracker',
+                    style: TextStyle(
+                      fontFamily: 'Cabin',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 22,
+                      color: Colors.white
+                    ),
+                  )],
               )
           ),
 
           SizedBox(
-            height: 30,
+            height: 350,
+          ),
+
+          //Graph
+
+          //Mood entries
+          Container(
+              height: 20,
+              //   color: Colors.white,
+              child: Row(
+                children: [
+                  Text(
+                    'Mindful Mood Entries',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 17,
+                      fontFamily: 'Cabin',
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),)],
+              )
+          ),
+
+
+          SizedBox(
+            height: 40,
           ),
 
           //Your mood
           Container(
               height: 20,
-              color: Colors.white,
+           //   color: Colors.white,
               child: Row(
-                children: [Text('Your Mood')],
+                children: [
+                  Text(
+                      'Great 2:56PM',
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.italic,
+                    fontFamily:  'Cabin',
+                    color: Colors.white,
+                  ),)],
               )
           ),
 
@@ -38,9 +106,18 @@ class MoodTrackerEntriesPage extends StatelessWidget {  @override
           //week
           Container(
               height: 20,
-              color: Colors.white,
+            //  color: Colors.white,
               child: Row(
-                children: [Text('Week')],
+                children: [
+                  Text(
+                      '2 Feb 2022',
+                  style: TextStyle(
+                    fontFamily: 'Cabin',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 17,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                  ),)],
               )
           ),
 
@@ -48,27 +125,21 @@ class MoodTrackerEntriesPage extends StatelessWidget {  @override
             height: 20,
           ),
 
-          //Graph
-
-          //Mood entries
+          //Mood entry note
           Container(
               height: 20,
-              color: Colors.white,
+             // color: Colors.white,
               child: Row(
-                children: [Text('Mindful Mood Entries')],
-              )
-          ),
-
-          SizedBox(
-            height: 15,
-          ),
-
-          //Mood entries list
-          Container(
-              height: 20,
-              color: Colors.white,
-              child: Row(
-                children: [Text('Great, 2:56PM')],
+                children: [
+                  Text(
+                      'Great, 2:56PM',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 17,
+                    fontStyle: FontStyle.italic,
+                    fontFamily: 'Cabin',
+                    color: Colors.white,
+                  ),)],
               )
 
           ),
