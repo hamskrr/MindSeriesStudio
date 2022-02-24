@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -14,11 +15,14 @@ class SettingsPage extends StatelessWidget {
 
             //settings title
             Container(
-                height: 50,
              //   color: Colors.white,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Icon(
+                      FontAwesome5.arrow_alt_circle_left,
+                      color: Colors.white,
+                    ),
+
                     Text(
                         'Settings',
                     style: TextStyle(
@@ -27,161 +31,201 @@ class SettingsPage extends StatelessWidget {
                       fontFamily: 'Roboto',
                       color: Colors.white,
                     ),
-                    )],
+                    ),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 )
             ),
 
             SizedBox(
-              height: 45,
+              height: 70,
             ),
 
             //dark mmode
             Container(
-                height: 20,
-               // color: Colors.white,
                 child: Row(
                   children: [
+                    Icon(
+                      FontAwesome5.moon,
+                      color: Colors.white,
+                    ),
+
                     Text(
                         'Dark mode',
                     style: TextStyle(
                       fontFamily: 'Roboto',
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.w400,
                       color: Colors.white,
                     ),
-                    )
+                    ),
+
+                    Icon(
+                      FontAwesome5.angle_right,
+                      color: Colors.white,
+                    ),
                   ],
-                )
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                ),
             ),
 
             SizedBox(
-              height: 25,
-            ),
-
-            //apperance
-            Container(
-                height: 20,
-              //  color: Colors.white,
-                child: Row(
-                  children: [
-                    Text(
-                        'Apperance',
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white,
-                      ),
-                    )],
-                )
-            ),
-
-            SizedBox(
-              height: 25,
+              height: 35,
             ),
 
             //notifications
             Container(
-                height: 20,
-               // color: Colors.white,
                 child: Row(
                   children: [
+                    Icon(
+                      FontAwesome5.bell,
+                      color: Colors.white,
+                    ),
+
                     Text(
                         'Notifications',
                       style: TextStyle(
                         fontFamily: 'Roboto',
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.w400,
                         color: Colors.white,
                       ),
-                    )],
+                    ),
+
+                    Icon(
+                      FontAwesome5.angle_right,
+                      color: Colors.white,
+                    ),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 )
             ),
 
             SizedBox(
-              height: 25,
+              height: 35,
             ),
 
             //privacy and security
             Container(
-                height: 20,
              //   color: Colors.white,
                 child: Row(
                   children: [
+                    Icon(
+                      FontAwesome5.shield_alt,
+                      color: Colors.white,
+                    ),
+
                     Text(
                         'Privacy and Security',
                       style: TextStyle(
                         fontFamily: 'Roboto',
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.w400,
                         color: Colors.white,
                       ),
-                    )],
+                    ),
+
+                    Icon(
+                      FontAwesome5.angle_right,
+                      color: Colors.white,
+                    ),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 )
             ),
 
-            SizedBox(
-              height: 25,
-            ),
+    SizedBox(
+    height: 35,
+    ),
 
             //language
             Container(
-                height: 20,
-               // color: Colors.white,
                 child: Row(
                   children: [
+                    Icon(
+                      FontAwesome5.language,
+                      color: Colors.white,
+                    ),
+
                     Text(
                         'Language',
                       style: TextStyle(
                         fontFamily: 'Roboto',
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.w400,
                         color: Colors.white,
                       ),
-                    )],
+                    ),
+
+                    Icon(
+                      FontAwesome5.angle_right,
+                      color: Colors.white,
+                    ),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 )
             ),
 
             SizedBox(
-              height: 25,
+              height: 35,
             ),
 
             //share the app
             Container(
-                height: 20,
-                //color: Colors.white,
                 child: Row(
                   children: [
+                    Icon(
+                      FontAwesome5.share,
+                      color: Colors.white,
+                    ),
+
                     Text(
                         'Share the app',
                       style: TextStyle(
                         fontFamily: 'Roboto',
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.w400,
                         color: Colors.white,
                       ),
-                    )],
+                    ),
+
+                    Icon(
+                      FontAwesome5.angle_right,
+                      color: Colors.white,
+                    ),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 )
             ),
 
             SizedBox(
-              height: 25,
+              height: 35,
             ),
 
             //rate us
             Container(
-                height: 20,
-                //color: Colors.white,
                 child: Row(
                   children: [
+                    Icon(
+                      FontAwesome5.star,
+                      color: Colors.white,
+                    ),
+
                     Text('Rate Us',
                       style: TextStyle(
                         fontFamily: 'Roboto',
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.w400,
                         color: Colors.white,
                       ),
-                    )],
+                    ),
+
+                    Icon(
+                      FontAwesome5.angle_right,
+                      color: Colors.white,
+                    ),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 )
             ),
 

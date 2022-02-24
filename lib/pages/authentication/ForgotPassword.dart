@@ -11,10 +11,9 @@ class ForgotPasswordPage extends StatelessWidget {  @override
           children: [
             Transform.translate(
             //adds transformation to widget relative to device
-            offset: Offset(0, -250), //x and y fields moves text
+            offset: Offset(0, -200), //x and y fields moves text
               child:
               Container(
-                // color: Colors.green,
                   child:
                   //aligns mindseries text to the centre
                   Row(
@@ -33,7 +32,6 @@ class ForgotPasswordPage extends StatelessWidget {  @override
 
             //reset password text
             Container(
-                height: 40,
                 child: Row(
                   children: [
                     Text(
@@ -54,18 +52,18 @@ class ForgotPasswordPage extends StatelessWidget {  @override
             ),
 
             //reset password subtext
-            Container(
-                height: 40,
-               // color: Colors.white,
+            Container (
                 child: Row(
                   children: [
                    Text(
-                        'Enter the email associated with...', //auto size text
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600, //semibold
-                        fontSize: 18,
-                        fontFamily: 'Cabin'
+                        'Enter the email associated with your account and we’ll send an email with instructions to reset your password.',
+                   // overflow: TextOverflow.ellipsis,
+                     maxLines: 3,
+                     style: TextStyle(
+                         color: Colors.white,
+                         fontWeight: FontWeight.w600, //semibold
+                         fontSize: 18,
+                         fontFamily: 'Cabin'
                       ),
                     ),
                   ],
@@ -73,13 +71,11 @@ class ForgotPasswordPage extends StatelessWidget {  @override
             ),
 
             SizedBox(
-              height: 20,
+              height: 100,
             ),
 
             //enter email text
             Container(
-                height: 25,
-               // color: Colors.white,
                 child: Row(
                   children: [
                     Text(
@@ -106,7 +102,7 @@ class ForgotPasswordPage extends StatelessWidget {  @override
                 child: TextField(
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                      hintText: 'example@hotmail.com',
+                      //hintText: 'example@hotmail.com',
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
@@ -121,23 +117,26 @@ class ForgotPasswordPage extends StatelessWidget {  @override
             ),
 
             //reset button
-            Container(
-                height: 25,
-                color: Colors.lightBlueAccent,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                        'RESET',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Cabin',
-                        fontSize: 17,
-                        letterSpacing: 2,
-                      ),
-                    )
-                  ],
-                )
+            TextButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                    MaterialStateProperty.all(Colors.lightBlue),
+                    minimumSize:
+                    MaterialStateProperty.all(Size(220, 40)),
+                    shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(10)))),
+                onPressed: () {},
+                child: Text(
+                  'RESET',
+                  style: TextStyle(
+                      fontFamily: 'Cabin',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18,
+                      color: Colors.white,
+                      letterSpacing: 2),
+                ),
             ),
           ],
         ),

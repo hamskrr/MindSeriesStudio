@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,22 +21,21 @@ class LoginPage extends StatelessWidget {
                   //adds transformation to widget relative to device
                   offset: Offset(0, -105), //x and y fields moves text
                   child: Container(
-                     // color: Colors.green,
+                      // color: Colors.green,
                       child:
                           //aligns mindseries text to the centre
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                            Text("Mind Series",
-                                style: TextStyle(
-                                 // letterSpacing: 2,
-                                  color: Colors.white,
-                                  fontSize: 36,
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: 'PoiretOne',
-                                )
-                            ),
-                          ])),
+                        Text("Mind Series",
+                            style: TextStyle(
+                              // letterSpacing: 2,
+                              color: Colors.white,
+                              fontSize: 36,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'PoiretOne',
+                            )),
+                      ])),
                 ),
 
                 //welcome back text
@@ -60,55 +60,26 @@ class LoginPage extends StatelessWidget {
                         height: 60,
                       ),
 
-                      //email/username text
+                      //email/username
                       Container(
-                        child: Text(
-                          'Email/Username',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontFamily: 'Cabin',
-                              fontWeight: FontWeight.bold),
-                        ),
-                        width: MediaQuery.of(context).size.width,
-                      ),
-
-                      SizedBox(
-                        height: 10,
-                      ),
-
-                      //email/username container
-                      Container(
-                          height: 40,
-                          // color: Colors.white,
-                          //textfield lets you edit
                           child: TextField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                                hintText: 'example@hotmail.com',
-                                fillColor: Colors.white,
-                                filled: true,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                )
+                        style: TextStyle(
+                          color: Colors.white60,
+                        ),
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            labelText: 'Email/Username',
+                            labelStyle: TextStyle(
+                              color: Colors.white,
                             ),
-                          )
-                      ),
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Colors.white,
+                            ))),
+                      )),
 
                       SizedBox(
                         height: 20,
-                      ),
-
-                      //password text
-                      Container(
-                        child: Text(
-                          'Password',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        width: MediaQuery.of(context).size.width,
                       ),
 
                       SizedBox(
@@ -117,17 +88,21 @@ class LoginPage extends StatelessWidget {
 
                       //password container
                       Container(
-                          height: 40,
                           child: TextField(
-                            textAlign: TextAlign.left,
-                            decoration: InputDecoration(
-                                hintText: 'Min. 8 characters',
-                                fillColor: Colors.white,
-                                filled: true,
-                                //font style cabin
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0))),
-                          )),
+                        style: TextStyle(
+                          color: Colors.white60,
+                        ),
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            labelText: 'Password',
+                            labelStyle: TextStyle(
+                              color: Colors.white,
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Colors.white,
+                            ))),
+                      )),
 
                       SizedBox(
                         height: 20,
@@ -135,24 +110,25 @@ class LoginPage extends StatelessWidget {
 
                       //remember password and forgot password text
                       Container(
-                        height: 25,
+                      //  height: 25,
                         child: Row(
                           children: [
-                            Text(
-                              'Remember me',
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold
-                              )
-                            ),
-                            Text(
-                                'Forgot Password?',
+                            Text('Remember me',
                                 style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold
-                                    //add font style cabin
+                                    fontSize: 13,
+                                    fontFamily: 'Cabin',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold)),
+
+                            TextButton(
+                                onPressed: () {},
+                                child: Text('Forgot Password?',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.bold ,
+                                      fontFamily: 'Cabin',
+                                      color: Colors.white,
+                                    )
                                 )
                             ),
                           ],
@@ -164,54 +140,59 @@ class LoginPage extends StatelessWidget {
                         height: 15,
                       ),
 
-                      //login container
-                      Container(
-                        height: 30,
-                        color: Colors.orange,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                                'Login',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                )
-                            ),
-
-                            // IconButton(
-                            //     onPressed: null, icon: Icon(Icons.login, color: Colors.white)),
-                          ],
-                        ),
+                      //login
+                      ElevatedButton.icon(
+                          icon: Icon(
+                            Icons.login_rounded,
+                            color: Colors.white,
+                          ),
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.orange),
+                              minimumSize:
+                                  MaterialStateProperty.all(Size(220, 40)),
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(20)))),
+                          onPressed: () {},
+                          label: Text(
+                            'Login',
+                            style: TextStyle(
+                                fontFamily: 'Cabin',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18,
+                                color: Colors.white,
+                                letterSpacing: 2),
+                          )
                       ),
 
                       SizedBox(
                         height: 30,
                       ),
 
-                      //Not registered yet? container
-                      Container(
-                        height: 25,
+
+                        Container(
                         child: Row(
                           children: [
-                            Text(
-                                'Not registered yet?',
+                            Text('Not registered yet?',
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: 'Cabin',
                                   color: Colors.white,
                                 )
                             ),
-                            Text(
-                                'Create an Account',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: 'Cabin',
-                                  color: Colors.orange,
-                                  fontWeight: FontWeight.bold
-                                )
-                            ),
+
+                            TextButton(
+                                onPressed: (){},
+                                child: Text('Create an Account',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'Cabin',
+                                        color: Colors.orange,
+                                        fontWeight: FontWeight.bold)
+                                ),
+                            )
                           ],
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         ),

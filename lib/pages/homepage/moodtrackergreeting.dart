@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/fontelico_icons.dart';
 
 class MoodTrackerGreetingPage extends StatelessWidget {  @override
@@ -101,28 +102,28 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: const <Widget>[
                   Icon(
-                    Icons.face,
-                    color: Colors.red,
+                      FontAwesome5.angry,
+                      color: Colors.red,
                     size: 30.0,
-                    semanticLabel: 'Text to announce in accessibility modes',
                   ),
+
                   Icon(
-                    Icons.audiotrack,
+                    FontAwesome5.frown,
                     color: Colors.amber,
                     size: 30.0,
                   ),
                   Icon(
-                    Icons.audiotrack,
+                    FontAwesome5.meh_blank,
                     color: Colors.grey,
                     size: 30.0,
                   ),
                   Icon(
-                    Icons.audiotrack,
+                    FontAwesome5.smile_beam,
                     color: Colors.green,
                     size: 30.0,
                   ),
                   Icon(
-                    Icons.audiotrack,
+                    FontAwesome5.laugh,
                     color: Colors.purpleAccent,
                     size: 30.0,
                   ),
@@ -130,12 +131,12 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
               )
           ),
 
-
+          SizedBox(
+            height: 15,
+          ),
 
           //Moments text
           Container(
-              height: 30,
-          //    color: Colors.white,
               child: Row(
                 children: [
                   Text(
@@ -151,13 +152,11 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
           ),
 
           SizedBox(
-            height: 10,
+            height: 15,
           ),
 
           //Moments textbox
           Container(
-              height: 60,
-              // color: Colors.white,
               //textfield lets you edit
               child: TextField(
                 keyboardType: TextInputType.text,
@@ -171,14 +170,13 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
                 ),
               )
           ),
+
           SizedBox(
             height: 30,
           ),
 
           //Mindful Mood
           Container(
-              height: 30,
-          //    color: Colors.white,
               child: Row(
                 children: [
                   Text(
@@ -199,8 +197,6 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
 
           //what actions ...
           Container(
-              height: 20,
-           //   color: Colors.white,
               child: Row(
                 children: [
                   Text(
@@ -231,8 +227,6 @@ class MoodTrackerGreetingPage extends StatelessWidget {  @override
 
           //close button
           Container(
-            height: 30,
-          //  color: Colors.white,
             child: Row (
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
