@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:mindseries/navigation_control.dart';
+import 'package:mindseries/pages/authentication/ForgotPassword.dart';
+import 'package:mindseries/pages/authentication/SignUpFormPage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -71,44 +74,43 @@ class _LoginPageState extends State<LoginPage> {
                       Container(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: TextField(
-                        style: TextStyle(
-                          color: Colors.white60,
-                        ),
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                            labelText: 'Email/Username',
-                            labelStyle: TextStyle(
-                              color: Colors.white,
+                            style: TextStyle(
+                              color: Colors.white60,
                             ),
-                            enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                              color: Colors.white,
-                            ))),
-                      )),
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                                labelText: 'Email/Username',
+                                labelStyle: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                  color: Colors.white,
+                                ))),
+                          )),
 
                       SizedBox(
                         height: 20,
                       ),
 
-
                       //password container
                       Container(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: TextField(
-                        style: TextStyle(
-                          color: Colors.white60,
-                        ),
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                            labelText: 'Password',
-                            labelStyle: TextStyle(
-                              color: Colors.white,
+                            style: TextStyle(
+                              color: Colors.white60,
                             ),
-                            enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                              color: Colors.white,
-                            ))),
-                      )),
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                                labelText: 'Password',
+                                labelStyle: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                  color: Colors.white,
+                                ))),
+                          )),
 
                       SizedBox(
                         height: 20,
@@ -126,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                                       value: remeberMeButton,
                                       visualDensity: VisualDensity.compact,
                                       fillColor: MaterialStateProperty.all(
-                                          Colors.white),
+                                          Colors.orange),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(100)),
@@ -148,7 +150,9 @@ class _LoginPageState extends State<LoginPage> {
                             Expanded(
                               child: TextButton(
                                   onPressed: () {
-                                 //   Navigator.pus(context, route)
+                                    NavigationControl(
+                                            nextPage: ForgotPasswordPage())
+                                        .navTo(context);
                                   },
                                   child: Text('Forgot Password?',
                                       style: TextStyle(
@@ -207,14 +211,19 @@ class _LoginPageState extends State<LoginPage> {
                                   fontFamily: 'Cabin',
                                   color: Colors.white,
                                 )),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text('Create an Account',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'Cabin',
-                                      color: Colors.orange,
-                                      fontWeight: FontWeight.bold)),
+                            Expanded(
+                              child: TextButton(
+                                onPressed: () {
+                                  NavigationControl(nextPage: SignUpFormPage())
+                                      .navTo(context);
+                                },
+                                child: Text('Create an Account',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'Cabin',
+                                        color: Colors.orange,
+                                        fontWeight: FontWeight.bold)),
+                              ),
                             )
                           ],
                         ),

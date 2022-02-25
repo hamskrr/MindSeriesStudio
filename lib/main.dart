@@ -15,7 +15,7 @@ import 'package:mindseries/pages/homepage/settings.dart';
 
 
 void main() => runApp(MaterialApp(
-  home: LoginPage(),
+  home: CheckMailPage(),
     // backgroundColor: Color.fromRGBO(21, 34, 56, 1),
 ));
 
