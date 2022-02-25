@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 
 class ForgotPasswordPage extends StatelessWidget {  @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class ForgotPasswordPage extends StatelessWidget {  @override
           children: [
             Transform.translate(
             //adds transformation to widget relative to device
-            offset: Offset(0, -200), //x and y fields moves text
+            offset: Offset(0, -140), //x and y fields moves text
               child:
               Container(
                   child:
@@ -28,6 +29,27 @@ class ForgotPasswordPage extends StatelessWidget {  @override
                             )
                         ),
                       ])),
+            ),
+
+            Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(
+                      FontAwesome5.arrow_alt_circle_left,
+                      color: Colors.white,
+                    ),
+
+                    Icon(
+                      FontAwesome5.question_circle,
+                      color: Colors.white,
+                    )
+                  ],
+                )
+            ),
+
+            SizedBox(
+              height: 35,
             ),
 
             //reset password text

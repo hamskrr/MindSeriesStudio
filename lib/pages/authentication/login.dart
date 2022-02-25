@@ -1,17 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool remeberMeButton = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //background colour
       backgroundColor: Color.fromRGBO(21, 34, 56, 1),
       body: Container(
-          padding: EdgeInsets.all(40),
+          padding: EdgeInsets.all(20),
           //moves main column to centre
           child: Column(mainAxisAlignment: MainAxisAlignment.center,
               //contains all sub-containers
@@ -21,7 +28,6 @@ class LoginPage extends StatelessWidget {
                   //adds transformation to widget relative to device
                   offset: Offset(0, -105), //x and y fields moves text
                   child: Container(
-                      // color: Colors.green,
                       child:
                           //aligns mindseries text to the centre
                           Row(
@@ -43,6 +49,7 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
                           'Welcome back!',
                           style: TextStyle(
@@ -62,6 +69,7 @@ class LoginPage extends StatelessWidget {
 
                       //email/username
                       Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: TextField(
                         style: TextStyle(
                           color: Colors.white60,
@@ -82,12 +90,10 @@ class LoginPage extends StatelessWidget {
                         height: 20,
                       ),
 
-                      SizedBox(
-                        height: 10,
-                      ),
 
                       //password container
                       Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: TextField(
                         style: TextStyle(
                           color: Colors.white60,
@@ -110,29 +116,51 @@ class LoginPage extends StatelessWidget {
 
                       //remember password and forgot password text
                       Container(
-                      //  height: 25,
                         child: Row(
                           children: [
-                            Text('Remember me',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    fontFamily: 'Cabin',
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)),
-
-                            TextButton(
-                                onPressed: () {},
-                                child: Text('Forgot Password?',
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold ,
-                                      fontFamily: 'Cabin',
-                                      color: Colors.white,
-                                    )
-                                )
+                            Expanded(
+                              flex: 1,
+                              child: Row(
+                                children: [
+                                  Checkbox(
+                                      value: remeberMeButton,
+                                      visualDensity: VisualDensity.compact,
+                                      fillColor: MaterialStateProperty.all(
+                                          Colors.white),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(100)),
+                                      onChanged: (click) {
+                                        print(click);
+                                        setState(() {
+                                          remeberMeButton = !remeberMeButton;
+                                        });
+                                      }),
+                                  Text('Remember me',
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          fontFamily: 'Cabin',
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold)),
+                                ],
+                              ),
                             ),
+                            Expanded(
+                              child: TextButton(
+                                  onPressed: () {
+                                 //   Navigator.pus(context, route)
+                                  },
+                                  child: Text('Forgot Password?',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Cabin',
+                                        color: Colors.white,
+                                      ))),
+                            )
                           ],
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.max,
                         ),
                       ),
 
@@ -164,15 +192,13 @@ class LoginPage extends StatelessWidget {
                                 fontSize: 18,
                                 color: Colors.white,
                                 letterSpacing: 2),
-                          )
-                      ),
+                          )),
 
                       SizedBox(
                         height: 30,
                       ),
 
-
-                        Container(
+                      Container(
                         child: Row(
                           children: [
                             Text('Not registered yet?',
@@ -180,24 +206,19 @@ class LoginPage extends StatelessWidget {
                                   fontSize: 14,
                                   fontFamily: 'Cabin',
                                   color: Colors.white,
-                                )
-                            ),
-
+                                )),
                             TextButton(
-                                onPressed: (){},
-                                child: Text('Create an Account',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: 'Cabin',
-                                        color: Colors.orange,
-                                        fontWeight: FontWeight.bold)
-                                ),
+                              onPressed: () {},
+                              child: Text('Create an Account',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'Cabin',
+                                      color: Colors.orange,
+                                      fontWeight: FontWeight.bold)),
                             )
                           ],
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         ),
                       ),
-
                     ],
                   ),
                 )

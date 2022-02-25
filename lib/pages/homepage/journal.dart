@@ -68,16 +68,14 @@ class JournalPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Username',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: 'Cabin'
-                      ),
-
-                    ),
+                    // Text(
+                    //   'Username',
+                    //   style: TextStyle(
+                    //     fontWeight: FontWeight.w600,
+                    //     color: Colors.white,
+                    //     fontSize: 18,
+                    //     fontFamily: 'Cabin'
+                    //   ),),
                     Text(
                         'date',
                     style: TextStyle(
@@ -240,7 +238,7 @@ class JournalPage extends StatelessWidget {
 
 
             SizedBox(
-              height: 35,
+              height: 40,
             ),
 
             //textbox
