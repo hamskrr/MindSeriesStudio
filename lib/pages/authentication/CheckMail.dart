@@ -2,6 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:mindseries/pages/authentication/ForgotPassword.dart';
+import 'package:mindseries/pages/homepage/journal.dart';
+import 'package:mindseries/pages/homepage/moodtrackergreeting.dart';
+
+import '../../navigation_control.dart';
+import 'SignUpFormPage.dart';
 
 class CheckMailPage extends StatelessWidget {
   @override
@@ -15,7 +21,7 @@ class CheckMailPage extends StatelessWidget {
           children: [
             Transform.translate(
               //adds transformation to widget relative to device
-              offset: Offset(0, -120), //x and y fields moves text
+              offset: Offset(0, -100), //x and y fields moves text
               child:
               //back button, mind series text
               Container(
@@ -133,20 +139,24 @@ class CheckMailPage extends StatelessWidget {
 
             //skip text
             Container(
-                height: 20,
-               // color: Colors.white,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                 // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                        'Skip, I’ll confirm later',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w400,
-                    ),
-                    )],
+                    Expanded(
+                      child: TextButton(
+                        onPressed: () {
+                          NavigationControl(nextPage: MoodTrackerGreetingPage())
+                              .navTo(context);
+                        },
+                        child: Text('Skip, I’ll confirm later',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Cabin',
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                    )
+                  ],
                 )
             ),
 
@@ -156,23 +166,21 @@ class CheckMailPage extends StatelessWidget {
 
             //didnt recieve email
             Container(
-                constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width*0.9,
-                ),
-                  child:  Text(
-                        'Did not receive the email? Check your spam filter,or try another email',
-                      maxLines: 2,
+              constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width*0.9,
+              ),
+              child:
+                  Text('Did not receive the email? Check your spam filter, or another email',
+                      maxLines: 3,
                       style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'Roboto',
-                      fontSize: 16.5,
-                      color: Colors.white,
+                        fontSize: 14,
+                        fontFamily: 'Roboto',
+                        color: Colors.white,
+                      )
+                  ),
+              ),
 
-                        ),),
 
-
-
-                ),
 
           ],
         ),

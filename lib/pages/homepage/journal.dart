@@ -134,7 +134,7 @@ class JournalPage extends StatelessWidget {
                 child: TextField(
                   textAlign: TextAlign.left,
                   decoration: InputDecoration(
-                      hintText: 'type text...',
+                    //  hintText: 'type text...',
                       fillColor: Colors.white,
                       filled: true,
                       //font style cabin
@@ -151,7 +151,7 @@ class JournalPage extends StatelessWidget {
                 height: 30,
                 child: TextField(
                   decoration: InputDecoration(
-                      hintText: 'type text...',
+                     // hintText: 'type text...',
                       fillColor: Colors.white,
                       filled: true,
                       //font style cabin
@@ -209,7 +209,7 @@ class JournalPage extends StatelessWidget {
                 height: 30,
                 child: TextField(
                   decoration: InputDecoration(
-                      hintText: 'type text...',
+                     // hintText: 'type text...',
                       fillColor: Colors.white,
                       filled: true,
                       //font style cabin
@@ -228,7 +228,7 @@ class JournalPage extends StatelessWidget {
                 child: TextField(
                   textAlign: TextAlign.left,
                   decoration: InputDecoration(
-                      hintText: 'type text...',
+                     // hintText: 'type text...',
                       fillColor: Colors.white,
                       filled: true,
                       //font style cabin

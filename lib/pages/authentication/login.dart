@@ -14,7 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool remeberMeButton = true;
+  bool rememberMeButton = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: Row(
                                 children: [
                                   Checkbox(
-                                      value: remeberMeButton,
+                                      value: rememberMeButton,
                                       visualDensity: VisualDensity.compact,
                                       fillColor: MaterialStateProperty.all(
                                           Colors.orange),
@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                                       onChanged: (click) {
                                         print(click);
                                         setState(() {
-                                          remeberMeButton = !remeberMeButton;
+                                          rememberMeButton = !rememberMeButton;
                                         });
                                       }),
                                   Text('Remember me',

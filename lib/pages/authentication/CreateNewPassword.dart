@@ -2,6 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:mindseries/pages/homepage/moodtrackergreeting.dart';
+
+import '../../navigation_control.dart';
 
 class CreateNewPasswordPage extends StatelessWidget {
   @override
@@ -13,10 +17,45 @@ class CreateNewPasswordPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Transform.translate(
+              //adds transformation to widget relative to device
+              offset: Offset(0, -140), //x and y fields moves text
+              child:
+              //back button, mind series text
+              Container(
+                  child:
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(
+                            FontAwesome5.arrow_alt_circle_left,
+                            color: Colors.white,
+                          ),
+                        ),
+
+                        Text("Mind Series",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'PoiretOne',
+                            )
+                        ),
+
+                        // Icon(
+                        //   FontAwesome5.question_circle,
+                        //   color: Colors.white,
+                        // )
+
+                      ])),
+            ),
+
             //title create new password
             Container(
-                height: 50,
-             //   color: Colors.white,
                 child: Row(
                   children: [
                     Text(
@@ -31,33 +70,31 @@ class CreateNewPasswordPage extends StatelessWidget {
             ),
 
             SizedBox(
-              height: 5,
+              height: 15,
             ),
 
             //text
             Container(
-                height: 25,
-          //      color: Colors.white,
-                child: Row(
-                  children: [
-                    Text(
-                        'Your new password...',
-                    style: TextStyle(
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width*0.9,
+                ),
+                child: Text(
+                        'Your new password must be different from previous used passwords',
+                      maxLines: 2,
+                      style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontFamily: 'Roboto',
                       fontSize: 14,
                       color: Colors.white,
-                    ),)],
+                    ),
                 )),
 
             SizedBox(
-              height: 30,
+              height: 70,
             ),
 
             //password text
             Container(
-                height: 35,
-              //  color: Colors.lightBlueAccent,
                 child: Row(
                   children: [
                     Text(
@@ -72,29 +109,38 @@ class CreateNewPasswordPage extends StatelessWidget {
             ),
 
             SizedBox(
-              height: 5,
+              height: 10,
             ),
 
             // pasword textbox
             Container(
-              height: 30,
-              color: Colors.white,
+                height: 30,
+                //color: Colors.white,
+                child: TextField(
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    //hintText: 'example@hotmail.com',
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      )
+                  ),
+                )
             ),
 
             SizedBox(
-              height: 5,
+              height: 10,
             ),
 
             // must be at least ... text
             Container(
-                height: 20,
-            //    color: Colors.white,
                 child: Row(
                   children: [
                     Text(
                         'Must be at least 8 characters.',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 12,
                       fontFamily: 'Roboto',
                       fontWeight: FontWeight.w400,
                       color: Colors.white,
@@ -102,13 +148,11 @@ class CreateNewPasswordPage extends StatelessWidget {
                 )),
 
             SizedBox(
-              height: 20,
+              height: 35,
             ),
 
-            //confirm pasword text
+            //confirm password text
             Container(
-                height: 35,
-               // color: Colors.pinkAccent,
                 child: Row(
                   children: [
                     Text(
@@ -124,23 +168,32 @@ class CreateNewPasswordPage extends StatelessWidget {
             ),
 
             SizedBox(
-              height: 5,
+              height: 10,
             ),
 
             //confirm pasword textbox
             Container(
                 height: 30,
-                color: Colors.white,
-               ),
-
-            SizedBox(
-              height: 5,
+                //color: Colors.white,
+                child: TextField(
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    //hintText: 'example@hotmail.com',
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      )
+                  ),
+                )
             ),
 
-            // bottom text ... both passwords must match
+            SizedBox(
+              height: 10,
+            ),
+
+            //  both passwords must match text
             Container(
-                height: 20,
-               // color: Colors.white,
                 child: Row(
                   children: [
                     Text(
@@ -148,7 +201,7 @@ class CreateNewPasswordPage extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w400, //regular
                       fontFamily: 'Roboto',
-                      fontSize: 14,
+                      fontSize: 12,
                       color: Colors.white,
                     ),
                     )],
@@ -159,21 +212,31 @@ class CreateNewPasswordPage extends StatelessWidget {
             ),
 
             //reset password button
-            Container(
-                height: 35,
-                color: Color.fromRGBO(36, 160, 237, 1),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                        'Reset Password',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w700, //bold
-                      color: Colors.white,
-                    ),)],
-                )),
+            TextButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                  MaterialStateProperty.all(Colors.lightBlue),
+                  minimumSize:
+                  MaterialStateProperty.all(Size(260, 40)),
+                  shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.circular(10)))),
+              onPressed: () {
+                NavigationControl(
+                    nextPage: MoodTrackerGreetingPage()
+                ).navTo(context);
+              },
+              child: Text(
+                'Reset Password',
+                style: TextStyle(
+                    fontFamily: 'Cabin',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18,
+                    color: Colors.white,
+                    letterSpacing: 2),
+              ),
+            ),
           ],
         ),
       ),

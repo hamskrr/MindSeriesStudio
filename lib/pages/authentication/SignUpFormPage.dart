@@ -1,8 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:mindseries/navigation_control.dart';
+import 'package:mindseries/pages/authentication/login.dart';
+import 'package:mindseries/pages/homepage/moodtrackergreeting.dart';
 
-class SignUpFormPage extends StatelessWidget {
+class SignUpFormPage extends StatefulWidget {
+  @override
+  State<SignUpFormPage> createState() => _SignUpFormPageState();
+}
+
+class _SignUpFormPageState extends State<SignUpFormPage> {
+  bool iAgreeButton = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -176,23 +186,35 @@ class SignUpFormPage extends StatelessWidget {
                   )),
 
               SizedBox(
-                height: 10,
+                height: 20,
               ),
 
               //tick box
               Container(
-                height: 35,
-                child: Row
-                  (
-                    children: [
-                  Icon(
-                  FontAwesome5.check_square,
-                  color: Colors.white,
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width*0.9,
                 ),
+                child: Row(
+                    children: [
+                      Checkbox(
+                          value: iAgreeButton,
+                          visualDensity: VisualDensity.compact,
+                          fillColor: MaterialStateProperty.all(
+                              Colors.orange),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                              BorderRadius.circular(100)),
+                          onChanged: (click) {
+                            print(click);
+                            setState(() {
+                              iAgreeButton = !iAgreeButton;
+                            });
+                          }),
 
                   Text(
                       'I agree to the Terms & Conditions and Privacy Policy',
-                  style: TextStyle(
+                    maxLines: 2,
+                    style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 14,
                     fontFamily: 'Cabin',
@@ -202,7 +224,7 @@ class SignUpFormPage extends StatelessWidget {
               ),
 
               SizedBox(
-                height: 10,
+                height: 15,
               ),
 
               //create account button
@@ -216,7 +238,11 @@ class SignUpFormPage extends StatelessWidget {
                         RoundedRectangleBorder(
                             borderRadius:
                             BorderRadius.circular(10)))),
-                onPressed: () {},
+                onPressed: () {
+                  NavigationControl(
+                    nextPage: MoodTrackerGreetingPage()
+                  ).navTo(context);
+                },
                 child: Text(
                   'Create Account',
                   style: TextStyle(
@@ -229,7 +255,7 @@ class SignUpFormPage extends StatelessWidget {
               ),
 
               SizedBox(
-                height: 10,
+                height: 15,
               ),
 
               //sign in google button
@@ -256,12 +282,10 @@ class SignUpFormPage extends StatelessWidget {
               ),
 
               SizedBox(
-                height: 10,
+                height: 15,
               ),
 
               Container(
-                height: 35,
-           //     color: Colors.grey,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -274,15 +298,22 @@ class SignUpFormPage extends StatelessWidget {
                       color: Colors.white,
                     ),),
 
-              Text(
-                  'Login here',
-                style: TextStyle(
-                  fontFamily: 'Cabin',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.orange,
-              ),
-              ),
+              TextButton(
+                  onPressed: (){
+                      NavigationControl(
+                        nextPage: LoginPage()
+                      ).navTo(context);
+                  },
+
+                  child: Text(
+                    'Login here',
+                    style: TextStyle(
+                      fontFamily: 'Cabin',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.orange,
+                    ),
+                  ), )
 
             ],
                 ),
