@@ -36,10 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   fluttericon: ^2.0.0
   badges: ^2.0.2
-#  cloud_firestore: ^3.1.7
-#  firebase_auth: ^3.3.6
-#  firebase_core: ^1.12.0
-#  firebase_database: ^9.0.6
+  cloud_firestore: ^3.1.7
+  firebase_auth: ^3.3.6
+  firebase_core: ^1.12.0
+  firebase_database: ^9.0.6
 
 dev_dependencies:
   flutter_test:

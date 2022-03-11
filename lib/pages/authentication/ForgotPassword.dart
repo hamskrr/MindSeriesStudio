@@ -1,59 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:mindseries/components%20/appBar.dart';
 import 'package:mindseries/navigation_control.dart';
 import 'package:mindseries/pages/authentication/CheckMail.dart';
 
 class ForgotPasswordPage extends StatelessWidget {  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MSAppBar.getAppBar(),
       backgroundColor: Color.fromRGBO(21, 34, 56, 1),
       body: Container(
-        padding: EdgeInsets.all(40),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center,
+        padding: EdgeInsets.symmetric(vertical: 40, horizontal: 25),
+        child: Column(mainAxisAlignment: MainAxisAlignment.start,
+
           children: [
-            Transform.translate(
-            //adds transformation to widget relative to device
-            offset: Offset(0, -160), //x and y fields moves text
-              child:
-                  //back button, mind series text
-              Container(
-                  child:
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(
-                            FontAwesome5.arrow_alt_circle_left,
-                            color: Colors.white,
-                          ),
-                        ),
-
-                        Text("Mind Series",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: 'PoiretOne',
-                            )
-                        ),
-
-                        // Icon(
-                        //   FontAwesome5.question_circle,
-                        //   color: Colors.white,
-                        // )
-
-                      ])),
-            ),
-
-
-            SizedBox(
-              height: 25,
-            ),
-
+            SizedBox(height: 30),
             //reset password text
             Container(
                 child: Row(
@@ -94,7 +56,7 @@ class ForgotPasswordPage extends StatelessWidget {  @override
             ),
 
             SizedBox(
-              height: 100,
+              height: 50,
             ),
 
             //enter email text

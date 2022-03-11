@@ -5,6 +5,8 @@ import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:mindseries/navigation_control.dart';
 import 'package:mindseries/pages/authentication/ForgotPassword.dart';
 import 'package:mindseries/pages/authentication/SignUpFormPage.dart';
+import 'package:mindseries/pages/homepage/journal.dart';
+import 'package:mindseries/pages/homepage/moodtrackergreeting.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -187,7 +189,10 @@ class _LoginPageState extends State<LoginPage> {
                                   RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.circular(20)))),
-                          onPressed: () {},
+                          onPressed: () {
+                            NavigationControl(nextPage: MoodTrackerGreetingPage())
+                                .navTo(context);
+                          },
                           label: Text(
                             'Login',
                             style: TextStyle(
@@ -202,32 +207,34 @@ class _LoginPageState extends State<LoginPage> {
                         height: 30,
                       ),
 
-                      Container(
-                        child: Row(
-                          children: [
-                            Text('Not registered yet?',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: 'Cabin',
-                                  color: Colors.white,
-                                )),
-                            Expanded(
-                              child: TextButton(
-                                onPressed: () {
-                                  NavigationControl(nextPage: SignUpFormPage())
-                                      .navTo(context);
-                                },
-                                child: Text('Create an Account',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: 'Cabin',
-                                        color: Colors.orange,
-                                        fontWeight: FontWeight.bold)),
+                      InkWell(
+                        onTap:(){
+                          NavigationControl(nextPage: SignUpFormPage())
+                              .navTo(context);
+                        },
+                        child: RichText(
+                          text: TextSpan(
+                            text:"Not registered yet?  ",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Cabin',
+                                color: Colors.white,
                               ),
-                            )
-                          ],
+                            children: [
+                              TextSpan(
+                                text:"Create an Account",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'Cabin',
+                                      color: Colors.orange,
+                                      fontWeight: FontWeight.bold)
+                              )
+                            ]
+                          ),
                         ),
                       ),
+
+
                     ],
                   ),
                 )
