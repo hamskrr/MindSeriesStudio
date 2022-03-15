@@ -3,11 +3,13 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:mindseries/models/profile.dart';
 import 'package:mindseries/pages/homepage/moodtrackergreeting.dart';
 
 import '../../navigation_control.dart';
 
 class CreateNewPasswordPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

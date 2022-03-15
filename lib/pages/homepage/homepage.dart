@@ -1,23 +1,115 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:mindseries/components%20/appBar.dart';
+import 'package:mindseries/navigation_control.dart';
+import 'package:mindseries/pages/authentication/login.dart';
+import 'package:mindseries/pages/homepage/journal.dart';
+import 'package:mindseries/providers/auth_provider.dart';
 
-class Homepage extends StatelessWidget {
+import '../../components /profile_avatar.dart';
+import 'inspo_page.dart';
+
+class Homepage extends StatefulWidget {
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class NavItem {
+  IconData icon;
+  Widget page;
+  String? label;
+  Color? activeColor;
+  Color? defaultColor;
+
+  NavItem(
+      {required this.icon,
+      required this.page,
+      this.label,
+      this.activeColor,
+      this.defaultColor});
+}
+
+class _HomepageState extends State<Homepage> {
+  List<NavItem> items = [
+    NavItem(icon: Icons.book, page: JournalPage()),
+    NavItem(icon: Icons.bar_chart, page: JournalPage()),
+    NavItem(icon: Icons.add_box, page: JournalPage()),
+    NavItem(icon: Icons.chat_bubble, page: JournalPage()),
+  ];
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-   return Scaffold(
-     backgroundColor: Color.fromRGBO(21, 34, 56, 1),
-     appBar: AppBar(backgroundColor: Colors.blueGrey,),
-     body: Center(
-       child: Text(
-         'String',
-         style: TextStyle(
-           color: Colors.white
-         ),
-       ),
-     ),
-
-   );
+    return Scaffold(
+        backgroundColor: Color.fromRGBO(21, 34, 56, 1),
+        extendBodyBehindAppBar: true,
+        appBar: MSAppBar.getAppBar(
+          backgroundColor:Colors.transparent,
+            actions: [
+          IconButton(
+              onPressed: () {
+                AuthProvider.of(context)?.auth?.signOut();
+                NavigationControl(nextPage: LoginPage()).replaceWith(context);
+              },
+              icon: Icon(Icons.logout))
+        ]),
+        body: _buildBody());
   }
-  
+
+  _buildBody() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child:
+      Stack(
+        children: [_buildInspo(),_buildNav()
+
+        ],
+      ),
+      // Column(
+      //   children: [
+      //    Expanded( flex: 8,child: _buildInspo()),
+      //
+      //     Expanded(child:_buildNav()),
+      //
+      //   ],
+      // ),
+    );
+  }
+
+  _buildInspo() {
+    return InspoPage();
+  }
+
+  _buildNav() {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+        alignment: Alignment.center,
+        width: MediaQuery.of(context).size.width,
+        height: kBottomNavigationBarHeight,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ...items
+                .map((item) => Expanded(child: _buildNavItem(item)))
+                .toList(),
+            Expanded(child: ProfileAvatar())
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavItem(item) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(onPressed: (){
+            NavigationControl(nextPage: item.page).navTo(context);
+          }, icon: Icon(item.icon))
+        ]);
+  }
 }
