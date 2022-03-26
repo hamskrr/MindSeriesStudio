@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:mindseries/components%20/appBar.dart';
+import 'package:mindseries/misc/MSColors.dart';
 import 'package:mindseries/navigation_control.dart';
 import 'package:mindseries/pages/authentication/login.dart';
 import 'package:mindseries/pages/homepage/journal.dart';
@@ -26,7 +27,7 @@ class NavItem {
       {required this.icon,
       required this.page,
       this.label,
-      this.activeColor,
+      this.activeColor = MSColors.action,
       this.defaultColor});
 }
 
@@ -37,22 +38,18 @@ class _HomepageState extends State<Homepage> {
     NavItem(icon: Icons.add_box, page: JournalPage()),
     NavItem(icon: Icons.chat_bubble, page: JournalPage()),
   ];
+  late NavItem currentPage;
+  @override
+  void initState() {
+    // TODO: implement initState
+    currentPage = items[0];
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-        backgroundColor: Color.fromRGBO(21, 34, 56, 1),
-        extendBodyBehindAppBar: true,
-        appBar: MSAppBar.getAppBar(
-          backgroundColor:Colors.transparent,
-            actions: [
-          IconButton(
-              onPressed: () {
-                AuthProvider.of(context)?.auth?.signOut();
-                NavigationControl(nextPage: LoginPage()).replaceWith(context);
-              },
-              icon: Icon(Icons.logout))
-        ]),
+
         body: _buildBody());
   }
 
@@ -62,7 +59,7 @@ class _HomepageState extends State<Homepage> {
       height: MediaQuery.of(context).size.height,
       child:
       Stack(
-        children: [_buildInspo(),_buildNav()
+        children: [currentPage.page,_buildNav()
 
         ],
       ),
@@ -77,9 +74,6 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
-  _buildInspo() {
-    return InspoPage();
-  }
 
   _buildNav() {
     return Align(
@@ -103,13 +97,16 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
-  Widget _buildNavItem(item) {
+  Widget _buildNavItem(NavItem item) {
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           IconButton(onPressed: (){
-            NavigationControl(nextPage: item.page).navTo(context);
-          }, icon: Icon(item.icon))
+            setState(() {
+              currentPage=item;
+            });
+            //NavigationControl(nextPage: item.page).navTo(context);
+          }, icon: Icon(item.icon,color: currentPage==item  ? item.activeColor:item.defaultColor,))
         ]);
   }
 }

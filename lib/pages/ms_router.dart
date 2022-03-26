@@ -4,6 +4,8 @@ import 'package:mindseries/pages/authentication/login.dart';
 import 'package:mindseries/pages/homepage/homepage.dart';
 import 'package:mindseries/providers/auth_provider.dart';
 import 'package:mindseries/providers/database_provider.dart';
+import 'package:mindseries/providers/profile_context.dart';
+import 'package:mindseries/providers/profile_provider.dart';
 
 import '../models/auth_service.dart';
 import '../models/profile.dart';
@@ -28,14 +30,14 @@ class _MSRouterState extends State<MSRouter> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
+    return StreamBuilder<Profile?>(
         stream: AuthProvider.of(context)?.auth?.currentUser(),
         builder: (_,userQuery){
         switch(userQuery.connectionState){
           case ConnectionState.waiting:
             return SplashScreen();
           default:
-            print(userQuery);
+            print(userQuery.data);
               if(userQuery.data == null){
                 return LoginPage();
               }else{
@@ -49,14 +51,17 @@ class _MSRouterState extends State<MSRouter> {
       isLoggedIn ? Homepage() : const LoginPage();
   }
   _buildHome(uid){
-    return FutureBuilder(
+    return FutureBuilder<Profile?>(
         future: DBProvider.of(context)?.db?.retrieveProfile(uid: uid),
         builder: (_,ds){
           switch(ds.connectionState){
             case ConnectionState.waiting:
               return SplashScreen();
             default:
-              return Homepage();
+              return ds.data!=null ? ProfileContext(
+                profile:ds.data!,
+                  child: Homepage()
+              ):Container();
 
           }
     });

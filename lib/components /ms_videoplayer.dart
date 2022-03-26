@@ -34,8 +34,8 @@ class _MSVideoPlayerState extends State<MSVideoPlayer> {
         alignment: Alignment.center,
         fit: BoxFit.cover,
         child: SizedBox(
-            width:_controller.value.size.width ?? 0,
-            height:_controller.value.size.height ?? 0,
+            width:_controller.value.size.width,
+            height:_controller.value.size.height,
             child: Center(
               child: _controller.value.isInitialized
 

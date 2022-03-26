@@ -18,7 +18,7 @@ abstract class IAuth {
 
   Future<dynamic> createUserWithEmailAndPassword(String email, String password);
 
-  Stream<User?> currentUser();
+  Stream<Profile?> currentUser();
 
   Future<void> signOut();
 
@@ -59,30 +59,31 @@ class FireAuth implements IAuth{
   }
 
   @override
-  Stream<User?> currentUser() {
-    //StreamController<Profile?> streamController = StreamController();
-   // Stream<Profile?> userStream = streamController.stream;
+  Stream<Profile?> currentUser() {
+    StreamController<Profile?> streamController = StreamController();
+   Stream<Profile?> userStream = streamController.stream;
 
-    return FirebaseAuth.instance.authStateChanges();
+   // return FirebaseAuth.instance.authStateChanges();
 
-    //   FirebaseAuth.instance.authStateChanges().listen((event) {
-    //   if (kDebugMode) {
-    //     print("AUTH CHANGE");
-    //     print(event);
-    //   }
-    //   Profile? profile;
-    //   if(event != null){
-    //    FireDB db = FireDB();
-    //    db.retrieveProfile(uid:event.uid).then((p){
-    //      profile = p;
-    //      streamController.add(profile);
-    //    });
-    //   }else{
-    //     print("--");
-    //
-    //   }
-    // });
-    // return userStream;
+      FirebaseAuth.instance.authStateChanges().listen((event) {
+      if (kDebugMode) {
+        print("AUTH CHANGE");
+        print(event);
+      }
+      Profile? profile;
+      if(event != null){
+       FireDB db = FireDB();
+       db.retrieveProfile(uid:event.uid).then((p){
+         profile = p;
+         streamController.add(profile);
+       });
+      }else{
+        print("--");
+        streamController.add(profile);
+
+      }
+    });
+    return userStream;
   }
 
   @override
