@@ -45,6 +45,8 @@ dependencies:
   firebase_auth:
   firebase_core:
   firebase_database:
+  carousel_slider:
+  fl_chart: ^0.50.1
 
 dev_dependencies:
   build_runner:

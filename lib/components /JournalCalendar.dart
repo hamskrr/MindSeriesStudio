@@ -1,15 +1,19 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:mindseries/misc/MSColors.dart';
 import 'package:mindseries/models/journal_entry.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class JournalCalendar extends StatefulWidget {
-  const JournalCalendar({Key? key}) : super(key: key);
+  final List<JournalEntry> entries;
+  const JournalCalendar(this.entries, {Key? key}) : super(key: key);
 
   @override
   _JournalCalendarState createState() => _JournalCalendarState();
 }
 
-class _JournalCalendarState extends State<JournalCalendar> {
+class _JournalCalendarState extends State<JournalCalendar> with AutomaticKeepAliveClientMixin{
   late final ValueNotifier<List<JournalEntry>> _selectedEvents;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
@@ -35,7 +39,14 @@ class _JournalCalendarState extends State<JournalCalendar> {
 
   List<JournalEntry> _getEventsForDay(DateTime day) {
     // Implementation example
-    return  [];
+    return widget.entries.where((entry) {
+      DateTime eventDate =
+          DateTime.fromMillisecondsSinceEpoch(entry.timestamp.toInt());
+      return day.year == eventDate.year &&
+          day.month == eventDate.month &&
+          day.day == eventDate.day;
+
+    }).toList();
   }
 
   List<JournalEntry> _getEventsForRange(DateTime start, DateTime end) {
@@ -46,12 +57,13 @@ class _JournalCalendarState extends State<JournalCalendar> {
       for (final d in days) ..._getEventsForDay(d),
     ];
   }
+
   /// Returns a list of [DateTime] objects from [first] to [last], inclusive.
   List<DateTime> daysInRange(DateTime first, DateTime last) {
     final dayCount = last.difference(first).inDays + 1;
     return List.generate(
       dayCount,
-          (index) => DateTime.utc(first.year, first.month, first.day + index),
+      (index) => DateTime.utc(first.year, first.month, first.day + index),
     );
   }
 
@@ -90,25 +102,28 @@ class _JournalCalendarState extends State<JournalCalendar> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Column(
+    return SafeArea(
+      child: Column(
         children: [
           TableCalendar<JournalEntry>(
             firstDay: DateTime.now().subtract(Duration(days: 365)),
-            lastDay:  DateTime.now(),
+            lastDay: DateTime.now(),
             focusedDay: _focusedDay,
             selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-            rangeStartDay: _rangeStart,
-            rangeEndDay: _rangeEnd,
             calendarFormat: _calendarFormat,
             rangeSelectionMode: _rangeSelectionMode,
             eventLoader: _getEventsForDay,
+            
             startingDayOfWeek: StartingDayOfWeek.monday,
             calendarStyle: CalendarStyle(
               // Use `CalendarStyle` to customize the UI
               outsideDaysVisible: false,
+              markerDecoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(2)
+              )
             ),
             onDaySelected: _onDaySelected,
-            onRangeSelected: _onRangeSelected,
             onFormatChanged: (format) {
               if (_calendarFormat != format) {
                 setState(() {
@@ -120,35 +135,66 @@ class _JournalCalendarState extends State<JournalCalendar> {
               _focusedDay = focusedDay;
             },
           ),
-          const SizedBox(height: 8.0),
-          Expanded(
-            child: ValueListenableBuilder<List<JournalEntry>>(
-              valueListenable: _selectedEvents,
-              builder: (context, value, _) {
-                return ListView.builder(
-                  itemCount: value.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 12.0,
-                        vertical: 4.0,
-                      ),
+          const SizedBox(height: 35.0),
+          _selectedDay != null
+              ? Text("Entries for ${DateFormat.yMMMd().format(_selectedDay!)}")
+              : Container(),
+          const SizedBox(height: 15.0),
+          ValueListenableBuilder<List<JournalEntry>>(
+            valueListenable: _selectedEvents,
+            builder: (context, value, _) {
+              return value.length <=0 ? Container(
+                child: Center(
+                  child: Text("No Entry Found!"),
+                ),
+              ) : CarouselSlider.builder(
+                itemCount: value.length,
+                itemBuilder: (context, index, g) {
+                  return Container(
+                      padding: const EdgeInsets.all(20),
+                      margin: const EdgeInsets.all(10),
+                      width: 200,
                       decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: ListTile(
-                        onTap: () => print('${value[index]}'),
-                        title: Text('${value[index]}'),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+                        boxShadow: [
+                          BoxShadow(color: Colors.black26,blurRadius: 12)
+                        ],
+                          border: Border.all(color: Colors.white70),
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: MSColors.card),
+                      child: Column(
+                        children: [
+                          Text(
+                            value[index].title ?? "",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 14),
+                          ),
+                          SizedBox(height: 10,),
+                          Container(
+                            constraints: BoxConstraints(maxWidth: 180),
+                              child: Text(
+                            value[index].notes ?? "ghgjhj",
+                            textAlign: TextAlign.start,
+                            maxLines: 4,
+                            style: TextStyle(
+                            fontStyle: FontStyle.italic, fontSize: 10),
+                          ))
+                        ],
+                      ));
+                },
+                options: CarouselOptions(
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    viewportFraction: 0.4,
+                    enlargeCenterPage: true,
+                    enableInfiniteScroll: false),
+              );
+            },
           ),
         ],
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

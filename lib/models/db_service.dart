@@ -5,11 +5,15 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:mindseries/models/journal_entry.dart';
 import 'package:mindseries/models/profile.dart';
 
+import 'mood.dart';
+
 abstract class IDB{
   saveProfile({required Profile profile});
  retrieveProfile({required String uid});
   Future<bool?> addJournalEntry({required String uid,required JournalEntry entry});
+  Future<bool?> addMood({required String uid,required Mood mood});
   Stream<List<JournalEntry>> retrieveJournal({required String uid});
+  Stream<List<Mood>> retrieveMoods({required String uid, required num from,required num to});
   Future<JournalEntry?> retrieveJournalEntry({required String uid,required String id});
 }
 class FireDB implements IDB{
@@ -56,6 +60,18 @@ class FireDB implements IDB{
     }
     return true;
   }
+  Future<bool?>  addMood({required String uid,required Mood mood}) async{
+    // TODO: implement saveProfile
+    try{
+
+      final snapshot = await FirebaseFirestore.instance.collection("UserJournal").doc(uid).collection("MoodTracker").doc(mood.id).set(mood.toJson());
+
+    }catch(e){
+      print(e);
+      return false;
+    }
+    return true;
+  }
   Stream<List<JournalEntry>> retrieveJournal({required String uid}){
     {
       StreamController<List<JournalEntry>> streamController = StreamController();
@@ -72,6 +88,31 @@ class FireDB implements IDB{
 
           streamController.add(entries);
 
+      });
+      return journalStream;
+    }
+
+  }
+  Stream<List<Mood>> retrieveMoods({required String uid,required num from,required num to}){
+    {
+      StreamController<List<Mood>> streamController = StreamController();
+      Stream<List<Mood>> journalStream = streamController.stream;
+
+      // return FirebaseAuth.instance.authStateChanges();
+print(from);
+print(to);
+      FirebaseFirestore.instance.collection("UserJournal")
+          .doc(uid)
+          .collection("MoodTracker")
+          .where("timestamp", isGreaterThanOrEqualTo: from, isLessThanOrEqualTo: to)
+          .snapshots().listen((event) {
+        List<Mood> entries = [];
+        final snapshot = event.docs;
+        snapshot.forEach((element) {
+          entries.add(Mood.fromJson(element.data()));
+        });
+
+        streamController.add(entries);
 
       });
       return journalStream;

@@ -6,9 +6,12 @@ import 'package:mindseries/misc/MSColors.dart';
 import 'package:mindseries/navigation_control.dart';
 import 'package:mindseries/pages/authentication/login.dart';
 import 'package:mindseries/pages/homepage/journal.dart';
+import 'package:mindseries/pages/homepage/moodtrackerentries.dart';
+import 'package:mindseries/pages/homepage/moodtrackergreeting.dart';
 import 'package:mindseries/providers/auth_provider.dart';
 
 import '../../components /profile_avatar.dart';
+import '../../providers/profile_context.dart';
 import 'inspo_page.dart';
 
 class Homepage extends StatefulWidget {
@@ -33,17 +36,27 @@ class NavItem {
 
 class _HomepageState extends State<Homepage> {
   List<NavItem> items = [
-    NavItem(icon: Icons.book, page: JournalPage()),
-    NavItem(icon: Icons.bar_chart, page: JournalPage()),
-    NavItem(icon: Icons.add_box, page: JournalPage()),
-    NavItem(icon: Icons.chat_bubble, page: JournalPage()),
   ];
   late NavItem currentPage;
   @override
   void initState() {
     // TODO: implement initState
-    currentPage = items[0];
+
     super.initState();
+  }
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    setState(() {
+      items = [
+        NavItem(icon: Icons.book, page: JournalPage()),
+        NavItem(icon: Icons.bar_chart, page: MoodTrackerGreetingPage()),
+        NavItem(icon: Icons.add_box, page: JournalPage()),
+        NavItem(icon: Icons.chat_bubble, page: JournalPage()),
+      ];
+      currentPage = items[1];
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -54,6 +67,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   _buildBody() {
+    print(ProfileContext.of(context).profile.uid);
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,

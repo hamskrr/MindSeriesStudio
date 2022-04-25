@@ -16,7 +16,7 @@ class ProfileAvatar extends StatelessWidget {
         shape: BoxShape.circle,
         border: border ? Border.all(color: borderColor ?? Colors.orange,width: borderWidth??2): null,
         image: DecorationImage(
-          image: NetworkImage(image??""),
+          image: NetworkImage(image??"https://www.formica.com/en-ie/-/media/formica/emea/products/swatch-images/f2253/f2253-swatch.jpg"),
           fit: BoxFit.contain
         )
       ),

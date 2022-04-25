@@ -19,8 +19,11 @@ import 'package:mindseries/pages/homepage/settings.dart';
 import 'package:mindseries/pages/ms_router.dart';
 import 'package:mindseries/providers/auth_provider.dart';
 import 'package:mindseries/providers/database_provider.dart';
+import 'package:mindseries/providers/profile_provider.dart';
 
 import 'firebase_options.dart';
+import 'models/profile.dart';
+import 'providers/profile_context.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,16 +46,20 @@ class MSApp extends StatefulWidget {
 class _MSAppState extends State<MSApp> {
   @override
   Widget build(BuildContext context) {
-   return AuthProvider(
-            auth: FireAuth(),
-            child: DBProvider(
-            db: FireDB(),
-       child: MaterialApp(
-         theme: Themes.darkTheme,
-              home: MSRouter(),
-              // backgroundColor: Color.fromRGBO(21, 34, 56, 1),
-            ),
-          ));
+   return ProfileContext(
+
+     profile: Profile(uid:"K9PCeU35iYazKE92RH3uTzSULZZ2"),
+     child: AuthProvider(
+              auth: FireAuth(),
+              child: DBProvider(
+              db: FireDB(),
+         child: MaterialApp(
+           theme: Themes.darkTheme,
+                home: MSRouter(),
+                // backgroundColor: Color.fromRGBO(21, 34, 56, 1),
+              ),
+            )),
+   );
 
   }
 }

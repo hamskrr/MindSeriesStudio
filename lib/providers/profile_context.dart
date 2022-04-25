@@ -8,6 +8,7 @@ class ProfileContext extends StatefulWidget {
   final Profile profile;
   const ProfileContext({Key? key, required this.child, required this.profile}) : super(key: key);
   static ProfileContextState of(BuildContext context){
+    print(context.dependOnInheritedWidgetOfExactType<ProfileProvider>());
     return (context.dependOnInheritedWidgetOfExactType<ProfileProvider>() as ProfileProvider).currentProfile!;
   }
   @override

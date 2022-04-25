@@ -17,6 +17,7 @@ class JournalPage extends StatefulWidget {
 
 class _JournalPageState extends State<JournalPage> {
   bool calView = false;
+  PageController controller = PageController(initialPage: 0 );
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<JournalEntry>>(
@@ -26,6 +27,7 @@ class _JournalPageState extends State<JournalPage> {
 
           case ConnectionState.waiting:
            return SplashScreen();
+
           default: return buildPages(entries:snapshot.data??[]);
         }
       }
@@ -33,6 +35,7 @@ class _JournalPageState extends State<JournalPage> {
   }
 
   buildPages({List<JournalEntry> entries = const[]}) {
+    controller = PageController(initialPage: entries.length);
     return Scaffold(
       backgroundColor: Color.fromRGBO(21, 34, 56, 1),
       extendBodyBehindAppBar: true,
@@ -44,19 +47,24 @@ class _JournalPageState extends State<JournalPage> {
               setState(() {
                 calView=!calView;
               });
-            }, icon: Icon(calView ? Icons.view_carousel : Icons.calendar_today_rounded))
+            }, icon: Icon(calView ? Icons.view_carousel : Icons.calendar_today_rounded)),
+            IconButton(onPressed: (){
+             controller.animateToPage(entries.length, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+            }, icon: const Icon(Icons.add_box )),
+
           ]),
       body: SafeArea(
-        child: calView ? _buildCalView():PageView.builder(
+        child: calView ? _buildCalView(entries):PageView.builder(
+          controller:controller ,
             itemCount: entries.length+1,
             itemBuilder: (_,index){
-          return JournalEntryPage(today: index == entries.length);
+          return JournalEntryPage(today: index == entries.length,entry: index < entries.length ? entries[index] : null,);
         }),
       ),
     );
   }
 
-  _buildCalView() {
-    return JournalCalendar();
+  _buildCalView(List<JournalEntry> entries) {
+    return JournalCalendar(entries);
   }
 }

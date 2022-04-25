@@ -58,6 +58,7 @@ class _MSRouterState extends State<MSRouter> {
             case ConnectionState.waiting:
               return SplashScreen();
             default:
+
               return ds.data!=null ? ProfileContext(
                 profile:ds.data!,
                   child: Homepage()
