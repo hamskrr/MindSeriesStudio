@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/profileProvider.dart';
 
 class ProfileAvatar extends StatelessWidget {
   final double? radius;
@@ -16,8 +19,8 @@ class ProfileAvatar extends StatelessWidget {
         shape: BoxShape.circle,
         border: border ? Border.all(color: borderColor ?? Colors.orange,width: borderWidth??2): null,
         image: DecorationImage(
-          image: NetworkImage(image??"https://www.formica.com/en-ie/-/media/formica/emea/products/swatch-images/f2253/f2253-swatch.jpg"),
-          fit: BoxFit.contain
+          image: NetworkImage(image??Provider.of<ProfileProvider>(context).currentProfile?.picture??"https://www.formica.com/en-ie/-/media/formica/emea/products/swatch-images/f2253/f2253-swatch.jpg"),
+          fit: BoxFit.cover
         )
       ),
     );

@@ -1,11 +1,16 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:mindseries/pages/splash_screen.dart';
+import 'package:mindseries/providers/database_provider.dart';
+import 'package:mindseries/providers/profileProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../../components /image_viewer.dart';
 import '../../components /ms_videoplayer.dart';
 import '../../components /profile_tile.dart';
 import '../../models/feed.dart';
+import '../../models/profile.dart';
 
 class InspoPage extends StatefulWidget {
   const InspoPage({Key? key}) : super(key: key);
@@ -25,10 +30,23 @@ class _InspoPageState extends State<InspoPage> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       color: Colors.black,
-      child: PageView.builder(
-        scrollDirection: Axis.vertical,
-          itemCount:feedContent.length ,
-          itemBuilder: (_,index)=>_buildFeed(feedContent[index]))
+      child: StreamBuilder<List<Feed>>(
+        stream: DBProvider.of(context)?.db?.retrieveFeeds(),
+        builder: (context, snapshot) {
+          switch(snapshot.connectionState) {
+            case ConnectionState.waiting :
+              return SplashScreen();
+            default:
+              feedContent = snapshot.data ?? [];
+              return feedContent.length < 1 ? Center(
+                child: Text("Nothing to show yet", style: TextStyle(fontWeight: FontWeight.bold),),
+              ) :PageView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: feedContent.length,
+                  itemBuilder: (_, index) => _buildFeed(feedContent[index]));
+          }
+        }
+      )
     );
   }
 
@@ -42,11 +60,13 @@ class _InspoPageState extends State<InspoPage> {
               gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
-                  colors: [Colors.black54,Colors.transparent]
+                  colors: [Colors.black54,Colors.transparent,Colors.black54]
               )
           ),
         ),
-        _buildForeground(feed)],
+        _buildForeground(feed),
+
+      ]
     );
   }
 
@@ -60,6 +80,7 @@ class _InspoPageState extends State<InspoPage> {
   }
 
   _buildForeground(Feed feed) {
+    Profile profile = Provider.of<ProfileProvider>(context).currentProfile!;
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -83,7 +104,7 @@ class _InspoPageState extends State<InspoPage> {
                   SizedBox(height: 20,),
                   Text(
                     feed.title ?? "Hello World",
-                    style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.white,fontSize:20,fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 10,),
                   Text(
@@ -97,12 +118,18 @@ class _InspoPageState extends State<InspoPage> {
             Expanded(child: Container(
               constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.2,maxHeight: 150),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Expanded(child: IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border_rounded)),),
-                  Spacer(flex: 1,),
-                  Expanded(child: IconButton(onPressed: (){}, icon: Icon(Icons.comment)),),
-                  Spacer(flex: 1,),
-                  Expanded(child: IconButton(onPressed: (){}, icon: Icon(Icons.share)),),
+                  IconButton(onPressed: ()async{
+
+                    if(feed.likes.contains(profile.uid)){
+                      feed.likes.remove(profile.uid);
+                    }else{
+                      feed.likes.add(profile.uid);
+                    }
+                    await DBProvider.of(context)?.db?.uploadFeed(feed:feed);
+                  }, icon: Icon(feed.likes.contains(profile.uid) ? Icons.favorite : Icons.favorite_border_rounded)),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.share)),
 
                 ],
               ),

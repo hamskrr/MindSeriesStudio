@@ -17,4 +17,9 @@ class Profile{
       _$ProfileFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProfileToJson(this);
+
+  @override
+  String toString() {
+    return 'Profile{uid: $uid, username: $username, email: $email, fname: $fname, lname: $lname, picture: $picture}';
+  }
 }

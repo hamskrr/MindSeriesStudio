@@ -13,7 +13,10 @@ Feed _$FeedFromJson(Map json) => Feed(
       contentType: $enumDecode(_$ContentTypeEnumMap, json['contentType']),
       title: json['title'] as String?,
       description: json['description'] as String?,
-      likes: json['likes'] as num? ?? 0,
+      timestamp: json['timestamp'] as num? ?? 0,
+      likes:
+          (json['likes'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const [],
       views: json['views'] as num? ?? 0,
       comments: (json['comments'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -33,6 +36,7 @@ Map<String, dynamic> _$FeedToJson(Feed instance) => <String, dynamic>{
       'views': instance.views,
       'comments': instance.comments,
       'shareLink': instance.shareLink,
+      'timestamp': instance.timestamp,
     };
 
 const _$ContentTypeEnumMap = {

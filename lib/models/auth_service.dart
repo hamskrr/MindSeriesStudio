@@ -20,6 +20,8 @@ abstract class IAuth {
 
   Stream<Profile?> currentUser();
 
+  Future<String?> getUser();
+
   Future<void> signOut();
 
   Future<bool> forgotPassword(String email);
@@ -58,6 +60,10 @@ class FireAuth implements IAuth{
 
   }
 
+  Future<String?> getUser() async{
+    final event =  FirebaseAuth.instance.currentUser;
+    return event?.uid;
+  }
   @override
   Stream<Profile?> currentUser() {
     StreamController<Profile?> streamController = StreamController();

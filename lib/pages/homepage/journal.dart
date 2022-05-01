@@ -4,7 +4,8 @@ import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:mindseries/components%20/JournalCalendar.dart';
 import 'package:mindseries/pages/splash_screen.dart';
 import 'package:mindseries/providers/database_provider.dart';
-import 'package:mindseries/providers/profile_context.dart';
+import 'package:mindseries/providers/profileProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../../components /JournalEntryPage.dart';
 import '../../components /appBar.dart';
@@ -21,7 +22,7 @@ class _JournalPageState extends State<JournalPage> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<JournalEntry>>(
-      stream: DBProvider.of(context)?.db?.retrieveJournal(uid: ProfileContext.of(context).profile.uid),
+      stream: DBProvider.of(context)?.db?.retrieveJournal(uid: Provider.of<ProfileProvider>(context, listen: false).currentProfile?.uid??"--"),
       builder: (context, snapshot) {
         switch(snapshot.connectionState){
 

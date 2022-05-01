@@ -4,8 +4,10 @@ import 'package:intl/intl.dart';
 import 'package:mindseries/misc/MSColors.dart';
 import 'package:mindseries/models/journal_entry.dart';
 import 'package:mindseries/providers/database_provider.dart';
-import 'package:mindseries/providers/profile_context.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
+
+import '../providers/profileProvider.dart';
 
 class JournalEntryPage extends StatefulWidget {
   final bool today;
@@ -363,7 +365,7 @@ SizedBox(height: 30,),
     setState(() {
       saving = true;
     });
-    await DBProvider.of(context)?.db?.addJournalEntry(uid: ProfileContext.of(context).profile.uid, entry: entry);
+    await DBProvider.of(context)?.db?.addJournalEntry(uid: Provider.of<ProfileProvider>(context,listen:false).currentProfile?.uid??"", entry: entry);
     setState(() {
       saving = false;
       editMode = false;

@@ -2,15 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/fontelico_icons.dart';
+import 'package:intl/intl.dart';
 import 'package:mindseries/components%20/appBar.dart';
 import 'package:mindseries/misc/MSColors.dart';
 import 'package:mindseries/misc/color_misc.dart';
 import 'package:mindseries/models/mood.dart';
 import 'package:mindseries/pages/homepage/moodtrackerentries.dart';
+import 'package:provider/provider.dart';
 
 import '../../navigation_control.dart';
 import '../../providers/database_provider.dart';
-import '../../providers/profile_context.dart';
+import '../../providers/profileProvider.dart';
 
 class MoodTrackerGreetingPage extends StatefulWidget {
   @override
@@ -38,7 +40,7 @@ class _MoodTrackerGreetingPageState extends State<MoodTrackerGreetingPage> {
       appBar: MSAppBar.getAppBar(actions: [
         IconButton(
           onPressed: () {
-            print(ProfileContext.of(context).profile.fname);
+            print(Provider.of<ProfileProvider>(context,listen: false).currentProfile?.fname);
             NavigationControl(nextPage: MoodTrackerEntriesPage())
                 .navTo(context);
           },
@@ -58,7 +60,7 @@ class _MoodTrackerGreetingPageState extends State<MoodTrackerGreetingPage> {
                 child: Row(
                   children: [
                     Text(
-                      'Hi ${ProfileContext.of(context).profile.username}',
+                      'Hi ${ Provider.of<ProfileProvider>(context, listen: false).currentProfile?.username??""}',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 22,
@@ -323,7 +325,7 @@ class _MoodTrackerGreetingPageState extends State<MoodTrackerGreetingPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Close',
+                    '${DateFormat.yMMMd().format(DateTime.now())}',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -376,7 +378,7 @@ class _MoodTrackerGreetingPageState extends State<MoodTrackerGreetingPage> {
     });
     await DBProvider.of(context)
         ?.db
-        ?.addMood(uid: ProfileContext.of(context).profile.uid, mood: mood);
+        ?.addMood(uid: Provider.of<ProfileProvider>(context,listen:false).currentProfile?.uid??"", mood: mood);
     setState(() {
       loading = false;
     });

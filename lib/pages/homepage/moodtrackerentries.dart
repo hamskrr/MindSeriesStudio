@@ -7,11 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mindseries/navigation_control.dart';
 import 'package:mindseries/pages/homepage/moodtrackergreeting.dart';
+import 'package:provider/provider.dart';
 
 import '../../components /appBar.dart';
 import 'package:mindseries/models/mood.dart';
 import '../../providers/database_provider.dart';
-import '../../providers/profile_context.dart';
+import '../../providers/profileProvider.dart';
 import '../splash_screen.dart';
 
 class MoodTrackerEntriesPage extends StatefulWidget {
@@ -38,117 +39,110 @@ class _MoodTrackerEntriesPageState extends State<MoodTrackerEntriesPage> {
         .millisecondsSinceEpoch;
     num to = DateTime.now().millisecondsSinceEpoch;
 
-    print(ProfileContext.of(context).profile.fname);
     return Scaffold(
-      appBar: MSAppBar.getAppBar(actions: [
-        IconButton(
-          onPressed: () {
-            NavigationControl(nextPage: MoodTrackerGreetingPage())
-                .navTo(context);
-          },
-          icon: Icon(Icons.add_box),
-        )
-      ]),
+      appBar: MSAppBar.getAppBar(),
       backgroundColor: Color.fromRGBO(21, 34, 56, 1),
       body: SingleChildScrollView(
-        child: StreamBuilder<List<Mood>>(
-          stream: DBProvider.of(context)?.db?.retrieveMoods(
-              uid: ProfileContext.of(context).profile.uid, from: from, to: to),
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.waiting:
-                return SplashScreen();
+        child: Container(
+          alignment: Alignment.topCenter,
+          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height, maxWidth: MediaQuery.of(context).size.width),
+          child: StreamBuilder<List<Mood>>(
+            stream: DBProvider.of(context)?.db?.retrieveMoods(
+                uid: Provider.of<ProfileProvider>(context).currentProfile?.uid??"", from: from, to: to),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return SplashScreen();
 
-              default:
-                final moods = snapshot.data ?? [];
-                return moods.length > 0
-                    ? Container(
-                        padding: EdgeInsets.all(40),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                                height: 35,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Mood Tracker',
-                                      style: TextStyle(
-                                          fontFamily: 'Cabin',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 22,
-                                          color: Colors.white),
-                                    )
-                                  ],
-                                )),
-                            SizedBox(
-                              height: 30,
-                            ),
-
-                            Container(
-                              height: 60,
-                              child: ListView(
-                                  scrollDirection: Axis.horizontal,
-                                  children: dayFilter.map((e) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: ChoiceChip(
-                                        onSelected: (b) {
-                                          setState(() {
-                                            curFilter = e;
-                                          });
-                                        },
-                                        label: Text(e),
-                                        selected: e == curFilter,
-                                        labelStyle: TextStyle(
-                                            color: Colors.white,
+                default:
+                  final moods = snapshot.data ?? [];
+                  return  Container(
+                          padding: EdgeInsets.all(40),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  height: 35,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Mood Tracker',
+                                        style: TextStyle(
                                             fontFamily: 'Cabin',
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    );
-                                  }).toList()),
-                            ),
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 22,
+                                            color: Colors.white),
+                                      )
+                                    ],
+                                  )),
+                              SizedBox(
+                                height: 30,
+                              ),
 
-                            _buildChart(moods),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            //Graph
+                              Container(
+                                height: 60,
+                                child: ListView(
+                                    scrollDirection: Axis.horizontal,
+                                    children: dayFilter.map((e) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: ChoiceChip(
+                                          onSelected: (b) {
+                                            setState(() {
+                                              curFilter = e;
+                                            });
+                                          },
+                                          label: Text(e),
+                                          selected: e == curFilter,
+                                          labelStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'Cabin',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      );
+                                    }).toList()),
+                              ),
 
-                            //Mood entries
-                            Container(
+                              _buildChart(moods),
+                              SizedBox(
                                 height: 20,
-                                //   color: Colors.white,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Mindful Mood Entries',
-                                      style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: 17,
-                                        fontFamily: 'Cabin',
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white,
-                                      ),
-                                    )
-                                  ],
-                                )),
+                              ),
+                              //Graph
 
-                            SizedBox(
-                              height: 20,
-                            ),
+                              //Mood entries
+                              Container(
+                                  height: 20,
+                                  //   color: Colors.white,
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'Mindful Mood Entries',
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 17,
+                                          fontFamily: 'Cabin',
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white,
+                                        ),
+                                      )
+                                    ],
+                                  )),
 
-                            _buildEntries(moods),
-                            SizedBox(
-                              height: 40,
-                            ),
-                          ],
-                        ),
-                      )
-                    : Container();
-            }
-          },
+                              SizedBox(
+                                height: 20,
+                              ),
+
+                              _buildEntries(moods),
+                              SizedBox(
+                                height: 40,
+                              ),
+                            ],
+                          ),
+                        );
+              }
+            },
+          ),
         ),
       ),
     );
@@ -347,9 +341,9 @@ class _MoodTrackerEntriesPageState extends State<MoodTrackerEntriesPage> {
   }
 
   _buildEntries(List<Mood> moods) {
-    return Container(
+    return moods.length < 1 ? Container(child: Text("No Entries"),):Container(
         width: MediaQuery.of(context).size.width,
-        height: 200,
+        height: 150,
         child: CarouselSlider.builder(
             itemCount: moods.length,
             itemBuilder: (_, index, x) {
@@ -396,17 +390,8 @@ class _MoodTrackerEntriesPageState extends State<MoodTrackerEntriesPage> {
             borderRadius: BorderRadius.circular(20)),
         padding: const EdgeInsets.all(10),
         width: 200,
-        child: Row(
-          children: [
-            Expanded(
-              child: Icon(
-                moods[index].reaction?.icon,
-                color: moods[index].reaction?.color,
-                size: 40,
-              ),
-            ),
-            Expanded(
-              child: Column(
+        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height*0.4),
+        child:  Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -429,11 +414,18 @@ class _MoodTrackerEntriesPageState extends State<MoodTrackerEntriesPage> {
                       color: Colors.white,
                     ),
                   ),
+                  Text(
+                    moods[index].notes??"",
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                  ),
                 ],
               ),
-            ),
-          ],
-        ),
+
       ),
     );
   }

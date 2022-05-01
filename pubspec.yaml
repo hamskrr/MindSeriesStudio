@@ -36,20 +36,27 @@ dependencies:
   cupertino_icons: ^1.0.2
   video_player: ^2.3.0
   fluttericon: ^2.0.0
+  provider:
   intl:
+  firebase_storage:
   uuid: ^3.0.6
   table_calendar: ^3.0.5
   badges: ^2.0.2
   cloud_firestore:
+  path:
+  url_launcher:
   google_sign_in:
   firebase_auth:
   firebase_core:
   firebase_database:
   carousel_slider:
+  image_picker: ^0.8.5
   fl_chart: ^0.50.1
+  file_picker: ^4.5.1
 
 dev_dependencies:
   build_runner:
+  get: #any version
   json_serializable:
   flutter_test:
     sdk: flutter

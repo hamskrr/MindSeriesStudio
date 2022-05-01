@@ -10,10 +10,11 @@ class Feed{
   final ContentType contentType;
   String? title;
   String? description;
-  num? likes;
+  List<String> likes;
   num? views;
   List<String>? comments;
   String? shareLink;
+  num timestamp;
 
   Feed(
       {
@@ -23,7 +24,8 @@ class Feed{
         required this.contentType,
       this.title,
       this.description,
-      this.likes = 0,
+        this.timestamp = 0,
+      this.likes = const [],
       this.views = 0,
       this.comments = const [],
       this.shareLink});

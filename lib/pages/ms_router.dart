@@ -4,11 +4,12 @@ import 'package:mindseries/pages/authentication/login.dart';
 import 'package:mindseries/pages/homepage/homepage.dart';
 import 'package:mindseries/providers/auth_provider.dart';
 import 'package:mindseries/providers/database_provider.dart';
-import 'package:mindseries/providers/profile_context.dart';
-import 'package:mindseries/providers/profile_provider.dart';
+import 'package:provider/provider.dart';
 
+import '../Theme/app_theme.dart';
 import '../models/auth_service.dart';
 import '../models/profile.dart';
+import '../providers/profileProvider.dart';
 import 'splash_screen.dart';
 
 class MSRouter extends StatefulWidget {
@@ -26,23 +27,34 @@ class _MSRouterState extends State<MSRouter> {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
 
+
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Profile?>(
+    // return FutureBuilder(
+    //   future: AuthProvider.of(context)?.auth?.getUser(),
+    //   builder: (BuildContext context, AsyncSnapshot<dynamic> ds) {
+    //     switch(ds.connectionState){
+    //       case ConnectionState.waiting:
+    //         return SplashScreen();
+    //       default:
+    //         print("58:${ds.data}");
+    //         return  ds.data == null ?  LoginPage() :  _buildHome(ds.data);
+    //     //
+    //   }}
+    //
+    // );
+
+    return  StreamBuilder<Profile?>(
         stream: AuthProvider.of(context)?.auth?.currentUser(),
         builder: (_,userQuery){
         switch(userQuery.connectionState){
           case ConnectionState.waiting:
             return SplashScreen();
           default:
-            print(userQuery.data);
-              if(userQuery.data == null){
-                return LoginPage();
-              }else{
-                return _buildHome(userQuery.data?.uid);
-              }
+         return   userQuery.data == null ?  LoginPage() :  _buildHome(userQuery.data?.uid);
+
 
         }
     });
@@ -53,15 +65,17 @@ class _MSRouterState extends State<MSRouter> {
   _buildHome(uid){
     return FutureBuilder<Profile?>(
         future: DBProvider.of(context)?.db?.retrieveProfile(uid: uid),
-        builder: (_,ds){
+        builder: (context,ds){
           switch(ds.connectionState){
             case ConnectionState.waiting:
               return SplashScreen();
             default:
-
-              return ds.data!=null ? ProfileContext(
-                profile:ds.data!,
-                  child: Homepage()
+              final profProfile = Provider.of<ProfileProvider>(context, listen: false);
+              Future.microtask(() {
+                profProfile.updateProfile(ds.data!);
+              });
+              return ds.data!=null ? (
+                  Homepage()
               ):Container();
 
           }
