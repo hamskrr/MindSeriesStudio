@@ -144,7 +144,7 @@ print(from);
 print(to);
       FirebaseFirestore.instance.collection("UserJournal")
           .doc(uid)
-          .collection("MoodTracker")
+          .collection("MoodTracker").orderBy("timestamp")
           .where("timestamp", isGreaterThanOrEqualTo: from, isLessThanOrEqualTo: to)
           .snapshots().listen((event) {
         List<Mood> entries = [];

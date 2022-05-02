@@ -46,15 +46,15 @@ extension MoodTrackerExtn on MoodTrackerReaction{
      switch(this){
 
        case MoodTrackerReaction.miserable:
-         return 5;
-       case MoodTrackerReaction.sad:
-        return 4;
-       case MoodTrackerReaction.neutral:
          return 1;
-       case MoodTrackerReaction.good:
+       case MoodTrackerReaction.sad:
         return 2;
-       case MoodTrackerReaction.great:
+       case MoodTrackerReaction.neutral:
          return 3;
+       case MoodTrackerReaction.good:
+        return 4;
+       case MoodTrackerReaction.great:
+         return 5;
      }
    }
    IconData get icon {

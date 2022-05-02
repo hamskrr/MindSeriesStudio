@@ -157,10 +157,7 @@ class _MoodTrackerEntriesPageState extends State<MoodTrackerEntriesPage> {
     Widget text;
     switch (value.toInt()) {
       case 0:
-        text = const Text('Day 0', style: style);
-        break;
-      case 1:
-        text = const Text('1D', style: style);
+        text = const Text('Now', style: style);
         break;
       case 7:
         text = const Text('7D', style: style);
@@ -193,19 +190,19 @@ class _MoodTrackerEntriesPageState extends State<MoodTrackerEntriesPage> {
     );
     MoodTrackerReaction reaction;
     switch (value.toInt()) {
-      case 1:
+      case 3:
        reaction = MoodTrackerReaction.neutral;
         break;
-      case 2:
+      case 4:
         reaction = MoodTrackerReaction.good;
         break;
-      case 3:
+      case 5:
         reaction = MoodTrackerReaction.great;
         break;
-      case 4:
+      case 2:
         reaction = MoodTrackerReaction.sad;
         break;
-      case 5:
+      case 1:
         reaction = MoodTrackerReaction.miserable;
         break;
       default:
@@ -219,25 +216,28 @@ class _MoodTrackerEntriesPageState extends State<MoodTrackerEntriesPage> {
 
     num maxDay = 1;
     LineChartBarData bar_data = LineChartBarData(
-      isCurved: true,
+      isCurved: false,
+      preventCurveOverShooting: true,
       color: const Color(0x99aa4cfc),
       barWidth: 4,
       isStrokeCapRound: true,
-      dotData: FlDotData(show: false),
+      dotData: FlDotData(show: true),
       belowBarData: BarAreaData(
         show: true,
         color: const Color(0x33aa4cfc),
       ),
       spots: moods.map((e) {
         maxDay = max(maxDay,DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(e.timestamp.toInt())).inDays.toDouble());
-        return FlSpot(DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(e.timestamp.toInt())).inDays.toDouble(),e.reaction?.value??0);}).toList(),
+       final day = DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(e.timestamp.toInt())).inDays.toDouble();
+       print("${DateFormat.yMMMd().format(DateTime.fromMillisecondsSinceEpoch(e.timestamp.toInt()))} , $day <-> ${e.reaction?.value}");
+        return FlSpot(day,e.reaction?.value??0);}).toList(),
     );
 
     LineChartData data = LineChartData(
       lineTouchData: LineTouchData(
         handleBuiltInTouches: true,
         touchTooltipData: LineTouchTooltipData(
-          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+          tooltipBgColor: Colors.white.withOpacity(0.8),
         ),
       ),
       gridData: FlGridData(show: true),
@@ -269,13 +269,14 @@ class _MoodTrackerEntriesPageState extends State<MoodTrackerEntriesPage> {
         show: true,
         border: const Border(
           bottom: BorderSide(color: Color(0xff4e4965), width: 4),
-          left: BorderSide(color: Colors.transparent),
+          left: BorderSide(color: Color(0xff4e4965), width: 4),
           right: BorderSide(color: Colors.transparent),
           top: BorderSide(color: Colors.transparent),
         ),
       ),
       lineBarsData: [bar_data],
-      minX: 1,
+      minX: 0,
+
       maxX: curFilter == dayFilter[0] ? 7 :
       curFilter == dayFilter[1] ? 30 :
       curFilter == dayFilter[2] ? 90 : 365 ,
@@ -414,13 +415,16 @@ class _MoodTrackerEntriesPageState extends State<MoodTrackerEntriesPage> {
                       color: Colors.white,
                     ),
                   ),
-                  Text(
-                    moods[index].notes??"",
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 10,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      moods[index].notes??"",
+                      style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],

@@ -41,8 +41,8 @@ class _JournalEntryPageState extends State<JournalEntryPage> {
   }
 
   Widget buildCurrentPageEdit() {
-    int greatefullCount = 0;
-    int affirmationCount = 0;
+    int greatefullCount = -1;
+    int affirmationCount = -1;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.only(left: 15.0,right: 15,bottom: 100,top: 15),
@@ -77,22 +77,7 @@ class _JournalEntryPageState extends State<JournalEntryPage> {
               greatefullCount++;
                   return Container(
                     margin: const EdgeInsets.all(5),
-                    child: TextField(
-                      onChanged: (v){
-                        entry.grateful![greatefullCount] = v;
-                      },
-                      style: TextStyle(color: Colors.black,fontSize: 14),
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                          hintStyle: TextStyle(color: Colors.black45),
-                          hintText: 'type text...',
-                          isDense: true,
-                          fillColor: Colors.white,
-                          filled: true,
-                          //font style cabin
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0))),
-                    ));})
+                    child: buildGratefulField(greatefullCount));})
                 .toList()),
             SizedBox(
               height: 25,
@@ -121,22 +106,7 @@ class _JournalEntryPageState extends State<JournalEntryPage> {
                   return Container(
                     height: 30,
                     margin: const EdgeInsets.all(5),
-                    child: TextField(
-                      onChanged: (v){
-                        entry.grateful![greatefullCount] = v;
-                      },
-                      style: TextStyle(color: Colors.black,fontSize: 14),
-                      decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 8,horizontal: 10),
-                          hintStyle: TextStyle(color: Colors.black45),
-                          hintText: 'type text...',
-                          fillColor: Colors.white,
-                          filled: true,
-                          isDense: true,
-                          //font style cabin
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0))),
-                    ));})
+                    child: buildAffirmationFields(affirmationCount));})
                 .toList()),
             SizedBox(
               height: 40,
@@ -210,6 +180,48 @@ SizedBox(height: 30,),
         ),
       ),
     );
+  }
+
+  TextField buildAffirmationFields(int affirmationCount) {
+    return TextField(
+                    onChanged: (v){
+                      entry.affirmation![affirmationCount] = v;
+                    },
+                    style: TextStyle(color: Colors.black,fontSize: 14),
+                    decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(vertical: 8,horizontal: 10),
+                        hintStyle: TextStyle(color: Colors.black45),
+                        hintText: 'type text...',
+                        fillColor: Colors.white,
+                        filled: true,
+                        isDense: true,
+                        //font style cabin
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0))),
+                  );
+  }
+
+  TextField buildGratefulField(int greatefullCount) {
+    return TextField(
+                    onChanged: (v){
+                      setState(() {
+                        print(greatefullCount);
+                        entry.grateful![greatefullCount] = v;
+
+                      });
+                      },
+                    style: TextStyle(color: Colors.black,fontSize: 14),
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 8,horizontal: 10),
+                        hintStyle: TextStyle(color: Colors.black45),
+                        hintText: 'type text...',
+                        isDense: true,
+                        fillColor: Colors.white,
+                        filled: true,
+                        //font style cabin
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0))),
+                  );
   }
 
   Widget buildCurrentPage2() {

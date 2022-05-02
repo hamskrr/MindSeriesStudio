@@ -12,7 +12,7 @@ class _MSImageViewerState extends State<MSImageViewer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Image(image: NetworkImage(widget.image)),
+      child: Image(width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,image: NetworkImage(widget.image),fit: BoxFit.cover,),
     );
   }
 }

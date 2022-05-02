@@ -420,12 +420,12 @@ class _ProfilePageState extends State<ProfilePage> {
     //uploadImage..
 
     Profile p = Provider.of<ProfileProvider>(context,listen: false).currentProfile!;
-    String? url = await DBProvider.of(context)?.db?.uploadImage(p.uid,bytes!,filename:"${p.uid}/profilePic");
+    String? url = bytes!=null ? await DBProvider.of(context)?.db?.uploadImage(p.uid,bytes!,filename:"${p.uid}/profilePic"):null;
     p.username = unameController.text;
     p.lname = lnameController.text;
     p.fname = fnameController.text;
     p.email = emailController.text;
-    p.picture = url;
+    p.picture = url??p.picture;
     Provider.of<ProfileProvider>(context,listen: false).updateProfile(p);
     await DBProvider.of(context)?.db?.saveProfile(profile: Provider.of<ProfileProvider>(context,listen: false).currentProfile!);
     setState(() {
