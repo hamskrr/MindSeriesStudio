@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/fontelico_icons.dart';
 import 'package:intl/intl.dart';
-import 'package:mindseries/components%20/appBar.dart';
+import 'package:mindseries/components/appBar.dart';
 import 'package:mindseries/misc/MSColors.dart';
 import 'package:mindseries/misc/color_misc.dart';
 import 'package:mindseries/models/mood.dart';

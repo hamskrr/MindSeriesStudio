@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:mindseries/components%20/JournalCalendar.dart';
+import 'package:mindseries/components/JournalCalendar.dart';
 import 'package:mindseries/pages/splash_screen.dart';
 import 'package:mindseries/providers/database_provider.dart';
 import 'package:mindseries/providers/profileProvider.dart';
 import 'package:provider/provider.dart';
 
-import '../../components /JournalEntryPage.dart';
-import '../../components /appBar.dart';
+import '../../components/JournalEntryPage.dart';
+import '../../components/appBar.dart';
 import '../../models/journal_entry.dart';
 
 class JournalPage extends StatefulWidget {

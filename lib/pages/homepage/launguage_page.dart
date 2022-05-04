@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mindseries/components%20/appBar.dart';
+import 'package:mindseries/components/appBar.dart';
 import 'package:mindseries/misc/MSColors.dart';
 import 'package:mindseries/providers/settingsProvider.dart';
 import 'package:provider/provider.dart';

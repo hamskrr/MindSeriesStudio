@@ -2,8 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mindseries/components%20/appBar.dart';
-import 'package:mindseries/components%20/profile_avatar.dart';
+import 'package:mindseries/components/appBar.dart';
+import 'package:mindseries/components/profile_avatar.dart';
 import 'package:mindseries/misc/MSColors.dart';
 import 'package:mindseries/navigation_control.dart';
 import 'package:mindseries/pages/authentication/login.dart';

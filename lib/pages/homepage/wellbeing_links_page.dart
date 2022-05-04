@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mindseries/components%20/appBar.dart';
+import 'package:mindseries/components/appBar.dart';
 import 'package:mindseries/misc/MSColors.dart';
 import 'package:url_launcher/url_launcher.dart';
 

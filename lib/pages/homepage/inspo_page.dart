@@ -6,9 +6,9 @@ import 'package:mindseries/providers/database_provider.dart';
 import 'package:mindseries/providers/profileProvider.dart';
 import 'package:provider/provider.dart';
 
-import '../../components /image_viewer.dart';
-import '../../components /ms_videoplayer.dart';
-import '../../components /profile_tile.dart';
+import '../../components/image_viewer.dart';
+import '../../components/ms_videoplayer.dart';
+import '../../components/profile_tile.dart';
 import '../../models/feed.dart';
 import '../../models/profile.dart';
 

@@ -9,7 +9,7 @@ import 'package:mindseries/navigation_control.dart';
 import 'package:mindseries/pages/homepage/moodtrackergreeting.dart';
 import 'package:provider/provider.dart';
 
-import '../../components /appBar.dart';
+import '../../components/appBar.dart';
 import 'package:mindseries/models/mood.dart';
 import '../../providers/database_provider.dart';
 import '../../providers/profileProvider.dart';

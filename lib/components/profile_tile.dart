@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mindseries/components%20/profile_avatar.dart';
+import 'package:mindseries/components/profile_avatar.dart';
 import 'package:mindseries/providers/database_provider.dart';
 
 import '../models/profile.dart';

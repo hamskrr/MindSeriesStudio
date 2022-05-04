@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:mindseries/components%20/appBar.dart';
+import 'package:mindseries/components/appBar.dart';
 import 'package:mindseries/navigation_control.dart';
 import 'package:mindseries/pages/authentication/CheckMail.dart';
 

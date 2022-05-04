@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:mindseries/components%20/appBar.dart';
+import 'package:mindseries/components/appBar.dart';
 import 'package:mindseries/misc/MSColors.dart';
 import 'package:mindseries/navigation_control.dart';
 import 'package:mindseries/pages/authentication/login.dart';
@@ -14,7 +14,7 @@ import 'package:mindseries/pages/homepage/settings_page.dart';
 import 'package:mindseries/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../components /profile_avatar.dart';
+import '../../components/profile_avatar.dart';
 import '../../providers/profileProvider.dart';
 import 'inspo_page.dart';
 
