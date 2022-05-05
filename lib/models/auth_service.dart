@@ -55,7 +55,7 @@ class FireAuth implements IAuth{
       );
       final uid = (await FirebaseAuth.instance.signInWithCredential(credential)).user?.uid;
       // Once signed in, return the UserCredential
-      Profile profile = Profile(uid: uid??"" ,username: googleUser?.displayName,email: googleUser?.email,fname: googleUser?.displayName );
+      Profile profile = Profile(uid: uid??"" ,username: googleUser?.displayName,email: googleUser?.email,fname: googleUser?.displayName,picture: googleUser?.photoUrl );
       return profile;
 
   }

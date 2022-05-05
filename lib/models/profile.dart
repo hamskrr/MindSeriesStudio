@@ -10,8 +10,10 @@ class Profile{
   String? fname;
   String? lname;
   String? picture;
+  String? phone;
+  bool is2fa;
 
-  Profile({this.uid = "",this.email = "",this.username = "",this.fname = "",this.lname = "",this.picture});
+  Profile({this.uid = "",this.email = "",this.username = "",this.fname = "",this.lname = "",this.picture,this.phone,this.is2fa = false});
 
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);

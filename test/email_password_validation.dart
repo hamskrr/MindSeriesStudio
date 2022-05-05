@@ -23,10 +23,10 @@ class Validator {
   
 }
 _validCredentials(){
-  return AuthMock().login('00000000@studentmail.ul.ie', 'DummyPassword123');
+  return AuthMock().login('00000000@mail.com', 'DummyPassword123');
 }
 _invalidCredentials(){
-  return AuthMock().login('00000000@studentmail.ul.ie', 'Dummy123');
+  return AuthMock().login('00000000@mail.com', 'Dummy123');
 }
 _emptyEmailTest(Validator v){
     return v.validateEmail('');
@@ -46,7 +46,7 @@ _invalidPasswordTest(Validator v){
 }
 _validEmailTest(Validator v){
 
-  return v.validateEmail('161593813@studentmail.ul.ie');
+  return v.validateEmail('161593813@mail.com');
 
 }
 _validPasswordTest(Validator v){

@@ -13,6 +13,8 @@ Profile _$ProfileFromJson(Map json) => Profile(
       fname: json['fname'] as String? ?? "",
       lname: json['lname'] as String? ?? "",
       picture: json['picture'] as String?,
+      phone: json['phone'] as String?,
+      is2fa: json['is2fa'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$ProfileToJson(Profile instance) => <String, dynamic>{
@@ -22,4 +24,6 @@ Map<String, dynamic> _$ProfileToJson(Profile instance) => <String, dynamic>{
       'fname': instance.fname,
       'lname': instance.lname,
       'picture': instance.picture,
+      'phone': instance.phone,
+      'is2fa': instance.is2fa,
     };

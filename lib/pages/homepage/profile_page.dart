@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:mindseries/components/appBar.dart';
 import 'package:mindseries/components/profile_avatar.dart';
 import 'package:mindseries/misc/MSColors.dart';
@@ -51,6 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    Profile? profile = Provider.of<ProfileProvider>(context,listen: false).currentProfile;
     return Scaffold(
       appBar: MSAppBar.getAppBar(actions: [
         TextButton.icon(
@@ -60,11 +62,11 @@ class _ProfilePageState extends State<ProfilePage> {
             }, icon: Icon(Icons.logout), label: Text("Sign out"))
       ]),
       backgroundColor: MSColors.background,
-      body: editMode ? buildEditProfile(context) : buildProfile(),
+      body: editMode ? buildEditProfile(context,profile) : buildProfile(),
     );
   }
 
-  buildEditProfile(BuildContext context) {
+  buildEditProfile(BuildContext context,Profile? profile) {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
@@ -295,40 +297,44 @@ class _ProfilePageState extends State<ProfilePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Phone',
+                    'Phone(2FA)',
+                    textAlign: TextAlign.left,
                     style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'Cabin',
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+
+                        fontSize: 18,
+                        fontFamily: 'Cabin'),
                   ),
                   SizedBox(
                     height: 10,
                   ),
-                  //last name text box
-                  Container(
-                      child: TextFormField(
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Cabin',
-                          fontSize: 18,
-                          color: Colors.black,
-                        ),
-                    controller: lnameController,
-                    validator: (v) =>
-                        (v ?? "").isEmpty ? "cannot be empty" : null,
-                    textAlign: TextAlign.left,
+                  IntlPhoneField(
+                    showCountryFlag: false,
+                    style:TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+
+                        fontSize: 18,
+                        fontFamily: 'Cabin'),
                     decoration: InputDecoration(
-                        //  hintText: 'type text',
-                        fillColor: Colors.white,
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 2, horizontal: 12),
-                        filled: true,
-                        //font style cabin
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0))),
-                  )),
+                      // hintText: 'type text',
+                      fillColor: Colors.white,
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 2, horizontal: 12),
+                      filled: true,
+                      //font style cabin
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                    ),
+                    initialCountryCode: 'UK',
+                    onChanged: (phone) {
+                      print(phone.completeNumber);
+                      profile!.phone = phone.completeNumber;
+
+                    },
+                  ),
+
                 ],
               ),
               SizedBox(

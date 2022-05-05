@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:mindseries/components/appBar.dart';
 import 'package:mindseries/components/msCheckbox.dart';
 import 'package:mindseries/navigation_control.dart';
@@ -82,6 +83,12 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                   //first name text box
                   Container(
                       child: TextFormField(
+                        style:TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+
+                            fontSize: 18,
+                            fontFamily: 'Cabin'),
                     controller: fnameController,
                     textAlign: TextAlign.left,
                     validator: (v) =>
@@ -122,6 +129,12 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                   //last name text box
                   Container(
                       child: TextFormField(
+                        style:TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+
+                            fontSize: 18,
+                            fontFamily: 'Cabin'),
                     controller: lnameController,
                     validator: (v) =>
                         (v ?? "").isEmpty ? "cannot be empty" : null,
@@ -162,6 +175,12 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                   //email text box
                   Container(
                       child: TextFormField(
+                        style:TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+
+                            fontSize: 18,
+                            fontFamily: 'Cabin'),
                     controller: emailController,
                     validator: (v) =>
                         (v ?? "").isEmpty ? "cannot be empty" : null,
@@ -202,6 +221,12 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                   //password text box
                   Container(
                       child: TextFormField(
+                        style:TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+
+                            fontSize: 18,
+                            fontFamily: 'Cabin'),
                     controller: pWordController,
                     validator: (v) =>
                         (v ?? "").isEmpty ? "cannot be empty" : null,
@@ -236,6 +261,53 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0))),
                   )),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Phone(2FA)',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+
+                            fontSize: 18,
+                            fontFamily: 'Cabin'),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      IntlPhoneField(
+                        showCountryFlag: false,
+                        style:TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+
+                            fontSize: 18,
+                            fontFamily: 'Cabin'),
+                        decoration: InputDecoration(
+                          // hintText: 'type text',
+                            fillColor: Colors.white,
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 2, horizontal: 12),
+                            filled: true,
+                            //font style cabin
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0)),
+                        ),
+                        initialCountryCode: 'UK',
+                        onChanged: (phone) {
+                          print(phone.completeNumber);
+                          _profile.phone = phone.completeNumber;
+                        },
+                      ),
+
+                    ],
+                  ),
+
                   SizedBox(
                     height: 20,
                   ),
@@ -391,10 +463,12 @@ class _SignUpFormPageState extends State<SignUpFormPage> {
           ?.auth
           ?.createUserWithEmailAndPassword(
               emailController.text, pWordController.text);
+      final phone = _profile.phone;
       _profile = Profile(
           uid: uid,
           email: emailController.text,
           fname: fnameController.text,
+          phone: phone,
           lname: lnameController.text);
 
       bool res =

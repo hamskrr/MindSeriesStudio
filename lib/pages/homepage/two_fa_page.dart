@@ -9,21 +9,21 @@ import 'package:mindseries/pages/authentication/ForgotPassword.dart';
 import 'package:mindseries/pages/authentication/SignUpFormPage.dart';
 import 'package:mindseries/pages/homepage/journal.dart';
 import 'package:mindseries/pages/homepage/moodtrackergreeting.dart';
-import 'package:mindseries/pages/homepage/two_fa_page.dart';
 
 import '../../models/profile.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/database_provider.dart';
 import '../homepage/homepage.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class TwoFactorPage extends StatefulWidget {
+  final Profile profile;
+  const TwoFactorPage({Key? key, required this.profile}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<TwoFactorPage> createState() => _TwoFactorPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _TwoFactorPageState extends State<TwoFactorPage> {
   bool rememberMeButton = true;
   bool loading = false;
   String? errorMsg;
@@ -47,19 +47,19 @@ class _LoginPageState extends State<LoginPage> {
                   offset: Offset(0, -105), //x and y fields moves text
                   child: Container(
                       child:
-                          //aligns mindseries text to the centre
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                        Text("Mind Series",
-                            style: TextStyle(
-                              // letterSpacing: 2,
-                              color: Colors.white,
-                              fontSize: 36,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: 'PoiretOne',
-                            )),
-                      ])),
+                      //aligns mindseries text to the centre
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Mind Series",
+                                style: TextStyle(
+                                  // letterSpacing: 2,
+                                  color: Colors.white,
+                                  fontSize: 36,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'PoiretOne',
+                                )),
+                          ])),
                 ),
 
                 //welcome back text
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
-                          'Welcome back!',
+                          'Please Enter the Code sent to your number ',
                           style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.w600,
@@ -101,8 +101,8 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                  color: Colors.white,
-                                ))),
+                                      color: Colors.white,
+                                    ))),
                           )),
 
                       SizedBox(
@@ -134,8 +134,8 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                  color: Colors.white,
-                                ))),
+                                      color: Colors.white,
+                                    ))),
                           )),
                       SizedBox(
                         height: 20,
@@ -144,8 +144,8 @@ class _LoginPageState extends State<LoginPage> {
                       errorMsg == null
                           ? Container()
                           : Text(errorMsg!,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.red)),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.red)),
                       SizedBox(
                         height: errorMsg == null ? 0 : 20,
                       ),
@@ -165,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                                           Colors.orange),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(100)),
+                                          BorderRadius.circular(100)),
                                       onChanged: (click) {
                                         print(click);
                                         setState(() {
@@ -185,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: TextButton(
                                   onPressed: () {
                                     NavigationControl(
-                                            nextPage: ForgotPasswordPage())
+                                        nextPage: ForgotPasswordPage())
                                         .navTo(context);
                                   },
                                   child: Text('Forgot Password?',
@@ -214,30 +214,30 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(Colors.orange),
+                              MaterialStateProperty.all(Colors.orange),
                               minimumSize:
-                                  MaterialStateProperty.all(Size(220, 40)),
+                              MaterialStateProperty.all(Size(220, 40)),
                               shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
                                       borderRadius:
-                                          BorderRadius.circular(20)))),
+                                      BorderRadius.circular(20)))),
                           onPressed: () {
                             login();
                           },
                           label: loading
                               ? const CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white),
-                                )
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.white),
+                          )
                               : Text(
-                                  'Login',
-                                  style: TextStyle(
-                                      fontFamily: 'Cabin',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                      letterSpacing: 2),
-                                )),
+                            'Login',
+                            style: TextStyle(
+                                fontFamily: 'Cabin',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18,
+                                color: Colors.white,
+                                letterSpacing: 2),
+                          )),
                       SizedBox(
                         height: 15,
                       ),
@@ -246,9 +246,9 @@ class _LoginPageState extends State<LoginPage> {
                       TextButton(
                         style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.white),
+                            MaterialStateProperty.all(Colors.white),
                             minimumSize:
-                                MaterialStateProperty.all(Size(240, 40)),
+                            MaterialStateProperty.all(Size(240, 40)),
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)))),
@@ -308,15 +308,11 @@ class _LoginPageState extends State<LoginPage> {
       final uid = await AuthProvider.of(context)
           ?.auth
           ?.signInWithEmailAndPassword(
-              emailController.text, pWordController.text);
+          emailController.text, pWordController.text);
       setState(() {
         loading = false;
       });
-      Profile profile = DBProvider.of(context)?.db?.retrieveProfile(uid: uid);
-      if(profile.is2fa){
-        NavigationControl(nextPage: TwoFactorPage(profile:profile)).replaceWith(context);
-      }else
-       NavigationControl(nextPage: Homepage()).replaceWith(context);
+      NavigationControl(nextPage: Homepage()).replaceWith(context);
     } catch (e) {
       if (kDebugMode) {
         print(e);
